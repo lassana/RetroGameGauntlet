@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="View.About.AboutPage" Title="About">
+	<ContentPage.Content>
+		<AbsoluteLayout x:Name="absoluteLayout" Padding="0">
+			<Label 	x:Name="forkLabel" 
+					BackgroundColor="Gray" 
+					TextColor="White"
+					FontAttributes="Bold" 
+					Text="    Fork me on Github    " 
+					FontSize="Micro">
+				    <Label.GestureRecognizers>
+       					<TapGestureRecognizer Tapped="OnForkTapped"/>
+   					</Label.GestureRecognizers>
+			</Label>
+			<StackLayout	Orientation="Vertical"
+			                AbsoluteLayout.LayoutBounds=".5,0.5,-1,-1" 
+			                AbsoluteLayout.LayoutFlags="PositionProportional">
+				<BoxView WidthRequest="220" HeightRequest="220" Color="Red"></BoxView>
+				<Label Text="Retro Game Gauntlet" FontAttributes="Bold" HorizontalTextAlignment="Center" ></Label>
+				<Label FontSize="Small" HorizontalTextAlignment="Center" Text="1.0"></Label>
+			</StackLayout>
+
+		</AbsoluteLayout>
+	</ContentPage.Content>
+</ContentPage>

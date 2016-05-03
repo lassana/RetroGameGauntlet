@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="View.Overview.OverviewPage">
+	<ContentPage.Content>
+		<StackLayout Orientation="Vertical" Padding="0" Spacing="0">
+			<BoxView HeightRequest="50" Color="Gray">
+			</BoxView>
+			<BoxView VerticalOptions="FillAndExpand" Color="Fuchsia">
+			</BoxView>
+			<BoxView HeightRequest="50" Color="Lime">
+			</BoxView>
+			<BoxView VerticalOptions="FillAndExpand" Color="Red" IsVisible="false">
+			</BoxView>
+			<BoxView HeightRequest="50" Color="Teal">
+			</BoxView>
+			<BoxView VerticalOptions="FillAndExpand" Color="Purple" IsVisible="false">
+			</BoxView>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
