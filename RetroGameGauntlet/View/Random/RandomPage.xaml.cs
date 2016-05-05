@@ -19,13 +19,12 @@ namespace View.Random
 
         private void OnItemTap(object sender, SelectedItemChangedEventArgs e)
         {
-            if (e.SelectedItem == null) {
-                return; //ItemSelected is called on deselection, which results in SelectedItem being set to null
+            if (e.SelectedItem == null)
+            {
+                return;
             }
-            //(e.SelectedItem as PlatformViewModel) //todo randomize
-            Navigation.PushAsync(new OverviewPage());
-            ((ListView)sender).SelectedItem = null; //uncomment 
-
+            Navigation.PushAsync(new OverviewPage{ TargetPlatform = (e.SelectedItem as PlatformViewModel) });
+            ((ListView)sender).SelectedItem = null;
         }
     }
 }

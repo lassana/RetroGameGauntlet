@@ -1,19 +1,130 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="View.Overview.OverviewPage">
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="View.Overview.OverviewPage"
+	Title="Loading...">
 	<ContentPage.Content>
-		<StackLayout Orientation="Vertical" Padding="0" Spacing="0">
-			<BoxView HeightRequest="50" Color="Gray">
-			</BoxView>
-			<BoxView VerticalOptions="FillAndExpand" Color="Fuchsia">
-			</BoxView>
-			<BoxView HeightRequest="50" Color="Lime">
-			</BoxView>
-			<BoxView VerticalOptions="FillAndExpand" Color="Red" IsVisible="false">
-			</BoxView>
-			<BoxView HeightRequest="50" Color="Teal">
-			</BoxView>
-			<BoxView VerticalOptions="FillAndExpand" Color="Purple" IsVisible="false">
-			</BoxView>
-		</StackLayout>
+		<AbsoluteLayout
+			x:Name="rootLayout">
+			<StackLayout
+				x:Name="descriptionLayout"
+				Orientation="Vertical"
+				Padding="0"
+				Spacing="0"
+				AbsoluteLayout.LayoutBounds="0,0,1,1"
+				AbsoluteLayout.LayoutFlags="All">
+				<Button
+					HeightRequest="50"
+					Font="Press Start"
+					FontSize="Micro"
+					Text="Your random game is"
+					x:Name="descriptionATitle"
+					TextColor="White"
+					BorderRadius="0"
+					Clicked="OnTitleClicked">
+				</Button>
+				<AbsoluteLayout
+					x:Name="descriptionALayout"
+					HeightRequest="0">
+					<Image
+						AbsoluteLayout.LayoutBounds="0,0,1,1"
+						AbsoluteLayout.LayoutFlags="All"
+						Aspect="AspectFill"
+						x:Name="flickrImage">
+					</Image>
+					<AbsoluteLayout
+						x:Name="titleLayout"
+						BackgroundColor="#A0000000"
+						Padding="6"
+						AbsoluteLayout.LayoutBounds="0.5,1,70,50"
+						AbsoluteLayout.LayoutFlags="PositionProportional">
+						<Label
+							x:Name="gameNameLabel"
+							TextColor="White"
+							Font="Press Start"
+							FontSize="Micro"
+							AbsoluteLayout.LayoutBounds="0,0,1,1"
+							AbsoluteLayout.LayoutFlags="All"
+							VerticalOptions="CenterAndExpand"
+							VerticalTextAlignment="Center">
+						</Label>
+					</AbsoluteLayout>
+				</AbsoluteLayout>
+				<Button
+					HeightRequest="50"
+					Font="Press Start"
+					FontSize="Micro"
+					Text="Wikipedia says"
+					x:Name="descriptionBTitle"
+					TextColor="White"
+					BorderRadius="0"
+					Clicked="OnTitleClicked">
+				</Button>
+				<ListView
+					x:Name="descriptionBLayout"
+					HeightRequest="0"
+					HasUnevenRows="true"
+					ItemSelected="OnWikipediaItemTap">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<ViewCell.View>
+									<StackLayout
+										Orientation="Vertical"
+										Padding="12">
+										<Label
+											Text="{Binding Title}">
+										</Label>
+										<Label
+											Text="{Binding Description}"
+											TextColor="Gray"
+											FontSize="Micro">
+										</Label>
+									</StackLayout>
+								</ViewCell.View>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+				<Button
+					HeightRequest="50"
+					Font="Press Start"
+					FontSize="Micro"
+					Text="And more"
+					x:Name="descriptionCTitle"
+					TextColor="White"
+					BorderRadius="0"
+					Clicked="OnTitleClicked">
+				</Button>
+				<BoxView
+					Color="Purple"
+					x:Name="descriptionCLayout"
+					HeightRequest="0">
+				</BoxView>
+			</StackLayout>
+			<StackLayout
+				x:Name="loadingLayout"
+				Orientation="Horizontal"
+				BackgroundColor="Gray"
+				Padding="6"
+				AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
+				AbsoluteLayout.LayoutFlags="PositionProportional">
+				<ActivityIndicator
+					Color="White"
+					IsRunning="true"
+					VerticalOptions="Center"
+					HorizontalOptions="Center"
+					WidthRequest="20"
+					HeightRequest="20">
+				</ActivityIndicator>
+				<Label
+					Text="Loading..."
+					TextColor="White"
+					VerticalOptions="Center"
+					HorizontalOptions="Center">
+				</Label>
+			</StackLayout>
+		</AbsoluteLayout>
 	</ContentPage.Content>
 </ContentPage>

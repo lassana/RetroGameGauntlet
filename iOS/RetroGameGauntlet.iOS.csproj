@@ -95,6 +95,9 @@
     <Reference Include="Plugin.DeviceInfo.Abstractions">
       <HintPath>..\packages\Xam.Plugin.DeviceInfo.2.0.2\lib\Xamarin.iOS10\Plugin.DeviceInfo.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RetroGameGauntlet\RetroGameGauntlet.csproj">
@@ -116,10 +119,38 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="DI\PlatformLoader.cs" />
+    <Compile Include="Renders\ColoredTabbedPageRenderer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.2.0.31\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.2.0.31\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <ItemGroup>
     <BundleResource Include="Resources\tile.png" />
+    <BundleResource Include="Resources\platforms\amiga" />
+    <BundleResource Include="Resources\platforms\c64" />
+    <BundleResource Include="Resources\platforms\dos" />
+    <BundleResource Include="Resources\platforms\dreamcast" />
+    <BundleResource Include="Resources\platforms\gamegear" />
+    <BundleResource Include="Resources\platforms\gba" />
+    <BundleResource Include="Resources\platforms\gbc" />
+    <BundleResource Include="Resources\platforms\mame" />
+    <BundleResource Include="Resources\platforms\mastersystem" />
+    <BundleResource Include="Resources\platforms\megadrive" />
+    <BundleResource Include="Resources\platforms\n64" />
+    <BundleResource Include="Resources\platforms\neogeo" />
+    <BundleResource Include="Resources\platforms\nes" />
+    <BundleResource Include="Resources\platforms\ps1" />
+    <BundleResource Include="Resources\platforms\saturn" />
+    <BundleResource Include="Resources\platforms\snes" />
+    <BundleResource Include="Resources\platforms\tg16" />
+    <BundleResource Include="Resources\PrStart.ttf" />
+    <BundleResource Include="Resources\ico_search.png" />
+    <BundleResource Include="Resources\ico_application.png" />
+    <BundleResource Include="Resources\ico_notepad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\platforms\" />
+    <Folder Include="DI\" />
+    <Folder Include="Renders\" />
   </ItemGroup>
 </Project>

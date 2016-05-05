@@ -2,6 +2,7 @@
 
 using Xamarin.Forms;
 using View.Main;
+using Core;
 
 namespace RetroGameGauntlet
 {
@@ -10,7 +11,11 @@ namespace RetroGameGauntlet
         public App()
         {
             // The root page of your application
-            MainPage = new NavigationPage(new TopPage());
+            MainPage = new NavigationPage(new TopPage())
+            {
+                BarBackgroundColor = Colors.BackgroundColor,
+                BarTextColor = Color.White
+            };
         }
 
         protected override void OnStart()

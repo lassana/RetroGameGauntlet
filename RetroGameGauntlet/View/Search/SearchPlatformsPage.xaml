@@ -1,12 +1,42 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="View.Search.SearchPlatformsPage" Title="Search">
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="View.Search.SearchPlatformsPage"
+	Title="Search"
+	Icon="ico_search.png">
 	<ContentPage.Content>
-		<ListView x:Name="listView">
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<TextCell Text="{Binding Title}" Detail="{Binding Comment}"></TextCell>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
+		<StackLayout
+			Orientation="Vertical"
+			Padding="0"
+			Spacing="0">
+			<SearchBar
+				Placeholder="Game name..."
+				TextChanged="OnSearchRequested">
+			</SearchBar>
+			<Label
+				HorizontalOptions="CenterAndExpand"
+				VerticalOptions="CenterAndExpand"
+				HorizontalTextAlignment="Center"
+				VerticalTextAlignment="Center"
+				Text="Nothing was found"
+				FontSize="Micro"
+				TextColor="Gray"
+				x:Name="notFoundLabel">
+			</Label>
+			<ListView
+				x:Name="listView"
+				IsVisible="false"
+				ItemSelected="OnItemTap">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<TextCell
+							Text="{Binding Key}"
+							Detail="{Binding Value}">
+						</TextCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>
