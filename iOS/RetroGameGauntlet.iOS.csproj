@@ -107,6 +107,24 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon_180.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon_167.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon_87.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon_57.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon_114.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon_120.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon_72.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon_144.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon_76.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon_152.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon_29.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon_58.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon_50.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon_100.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon_40.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon_80.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
