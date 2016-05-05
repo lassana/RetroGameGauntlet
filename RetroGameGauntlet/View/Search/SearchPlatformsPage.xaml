@@ -11,7 +11,7 @@
 			Padding="0"
 			Spacing="0">
 			<SearchBar
-				Placeholder="Game name..."
+				Placeholder="Start typing..."
 				TextChanged="OnSearchRequested">
 			</SearchBar>
 			<Label

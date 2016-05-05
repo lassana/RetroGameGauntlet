@@ -7,12 +7,17 @@ using ViewModel;
 using System.Diagnostics;
 using Core;
 using System.Collections.Generic;
+using Plugin.Share;
+using Plugin.Share.Abstractions;
 
 namespace View.Overview
 {
     public partial class OverviewPage : ContentPage
     {
         private double targetLayoutHeight;
+
+        private string gameName;
+        private string platformName;
 
         public PlatformViewModel TargetPlatform
         {
@@ -37,16 +42,23 @@ namespace View.Overview
             SizeChanged += OnSizeChanged;
 
             descriptionLayout.BackgroundColor = Colors.BackgroundColor;
-
-            //descriptionATitle.BackgroundColor = descriptionBTitle.BackgroundColor = descriptionCTitle.BackgroundColor = Colors.BackgroundColor;
-
+            descriptionCLayout.BackgroundColor = Colors.BackgroundColorLighter;
 
             loadingLayout.IsVisible = true;
             descriptionLayout.IsVisible = false;
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            clipboardButton.IsEnabled = CrossShare.Current.SupportsClipboard;
+        }
+
         public async Task InitGame(string gameName, string platformName)
         {
+            this.gameName = gameName;
+            this.platformName = platformName;
+
             await Task.Delay(250 * 2);
 
             var image = await new FlickImageSearch().GetImageForGame(gameName, platformName);
@@ -54,6 +66,8 @@ namespace View.Overview
             flickrImage.Source = image;
 
             Title = gameNameLabel.Text = gameName;
+            descriptionATitle.Text = string.Format("Your {0} game", platformName);
+            seachButton.Text = string.Format("Search \"{0} {1}\"", platformName, gameName);
 
             loadingLayout.IsVisible = false;
             descriptionLayout.IsVisible = true;
@@ -90,6 +104,7 @@ namespace View.Overview
                 return;
             }
             var wikiPage = e.SelectedItem as WikipediaLinkViewModel;
+            //CrossShare.Current.OpenBrowser(wikiPage.Url, new BrowserOptions { UseSafairReaderMode = true });
             Device.OpenUri(wikiPage.Uri);
             ((ListView)sender).SelectedItem = null;
         }
@@ -108,21 +123,23 @@ namespace View.Overview
         {
             rootLayout.Animate("descriptionAnimation", (arg) =>
                 {
-                    if (viewToShow != null) 
+                    if (viewToShow != null)
                     {
                         viewToShow.HeightRequest = arg * targetLayoutHeight;
                         viewToShow.Opacity = arg;
                     }
-                    if (viewToHide != null) 
+                    if (viewToHide != null)
                     {
                         viewToHide.HeightRequest = (1 - arg) * targetLayoutHeight;
                         viewToHide.Opacity = (1 - arg);
                     }
                 }, 16, 250, Easing.CubicInOut, (a, b) =>
                 {
-                    if (viewToShow != null) viewToShow.HeightRequest = targetLayoutHeight;
+                    if (viewToShow != null)
+                        viewToShow.HeightRequest = targetLayoutHeight;
                     //viewToShow.Opacity = 1;
-                    if (viewToHide != null) viewToHide.HeightRequest = 0;
+                    if (viewToHide != null)
+                        viewToHide.HeightRequest = 0;
                     //viewToShow.Opacity = 0;
                 });
         }
@@ -165,6 +182,21 @@ namespace View.Overview
             {
                 return null;
             }
+        }
+
+        private void OnShareClicked(object sender, EventArgs args)
+        {
+            CrossShare.Current.Share(string.Format("My {0} game is {1}", platformName, gameName), gameName);
+        }
+
+        private void OnCopyToClipboardClicked(object sender, EventArgs args)
+        {
+            CrossShare.Current.SetClipboardText(string.Format("My {0} game is {1}", platformName, gameName));
+        }
+
+        private void OnSearchClicked(object sender, EventArgs args)
+        {
+
         }
     }
 }

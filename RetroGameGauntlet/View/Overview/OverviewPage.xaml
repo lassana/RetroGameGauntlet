@@ -18,7 +18,6 @@
 					HeightRequest="50"
 					Font="Press Start"
 					FontSize="Micro"
-					Text="Your random game is"
 					x:Name="descriptionATitle"
 					TextColor="White"
 					BorderRadius="0"
@@ -97,34 +96,64 @@
 					BorderRadius="0"
 					Clicked="OnTitleClicked">
 				</Button>
-				<BoxView
-					Color="Purple"
+				<AbsoluteLayout
 					x:Name="descriptionCLayout"
-					HeightRequest="0">
-				</BoxView>
+					HeightRequest="0"
+					AbsoluteLayout.LayoutBounds="0,0,1,1"
+					AbsoluteLayout.LayoutFlags="All">
+					<StackLayout
+						Padding="6">
+						<Button
+							Image="img_share.png"
+							Text="Share the game"
+							Clicked="OnShareClicked"
+							HorizontalOptions="Start"
+							TextColor="White">
+						</Button>
+						<Button
+							x:Name="clipboardButton"
+							Image="img_clipboard.png"
+							Text="Copy name to clipboard"
+							Clicked="OnCopyToClipboardClicked"
+							HorizontalOptions="Start"
+							TextColor="White">
+						</Button>
+						<Button
+							x:Name="seachButton"
+							Image="img_search.png"
+							Text="Find more"
+							Clicked="OnSearchClicked"
+							HorizontalOptions="Start"
+							TextColor="White">
+						</Button>
+					</StackLayout>
+				</AbsoluteLayout>
 			</StackLayout>
-			<StackLayout
+			<Frame
 				x:Name="loadingLayout"
-				Orientation="Horizontal"
 				BackgroundColor="Gray"
-				Padding="6"
+				OutlineColor="Transparent"
 				AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
 				AbsoluteLayout.LayoutFlags="PositionProportional">
-				<ActivityIndicator
-					Color="White"
-					IsRunning="true"
-					VerticalOptions="Center"
-					HorizontalOptions="Center"
-					WidthRequest="20"
-					HeightRequest="20">
-				</ActivityIndicator>
-				<Label
-					Text="Loading..."
-					TextColor="White"
-					VerticalOptions="Center"
-					HorizontalOptions="Center">
-				</Label>
-			</StackLayout>
+				<StackLayout
+					Orientation="Horizontal"
+					Padding="0">
+					<ActivityIndicator
+						Color="White"
+						IsRunning="true"
+						VerticalOptions="Center"
+						HorizontalOptions="Center"
+						WidthRequest="20"
+						HeightRequest="20">
+					</ActivityIndicator>
+					<Label
+						Text="Loading..."
+						TextColor="White"
+						VerticalOptions="Center"
+						HorizontalOptions="Center">
+					</Label>
+				</StackLayout>
+			</Frame>
 		</AbsoluteLayout>
 	</ContentPage.Content>
 </ContentPage>
