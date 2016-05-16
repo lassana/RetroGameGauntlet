@@ -5,17 +5,13 @@ using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using Model;
+using RetroGameGauntlet.Model;
 
-namespace Core
+namespace RetroGameGauntlet.Core
 {
     public class FlickImageSearch
     {
         private const string ApiKey = "78d991c72ad7a124dcef3c2796d6f4ea";
-
-        public FlickImageSearch()
-        {
-        }
 
         private async Task<string> GetImageFromLink(string link)
         {

@@ -1,16 +1,14 @@
-﻿
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using System;
 using System.Threading.Tasks;
-using Model;
-using ViewModel;
+using RetroGameGauntlet.Model;
+using RetroGameGauntlet.ViewModel;
 using System.Diagnostics;
-using Core;
+using RetroGameGauntlet.Core;
 using System.Collections.Generic;
 using Plugin.Share;
-using Plugin.Share.Abstractions;
 
-namespace View.Overview
+namespace RetroGameGauntlet.View
 {
     public partial class OverviewPage : ContentPage
     {
@@ -38,6 +36,11 @@ namespace View.Overview
         public OverviewPage()
         {
             InitializeComponent();
+
+            if (Device.OS == Xamarin.Forms.TargetPlatform.Android)
+            {
+                descriptionBLayout.BackgroundColor = Color.White;
+            }
 
             SizeChanged += OnSizeChanged;
 
@@ -82,8 +85,8 @@ namespace View.Overview
             {
                 return;
             }
-            var gameName = DependencyService.Get<IPlatformLoader>().GetRandomGame(targetPlatform.FileName);
-            await InitGame(gameName, targetPlatform.Title);
+            var newGameName = DependencyService.Get<IPlatformLoader>().GetRandomGame(targetPlatform.FileName);
+            await InitGame(newGameName, targetPlatform.Title);
         }
 
         private void OnSizeChanged(object sender, EventArgs e)
@@ -121,40 +124,58 @@ namespace View.Overview
 
         private void AnimateDescriptionViews(Xamarin.Forms.View viewToShow, Xamarin.Forms.View viewToHide)
         {
+            if (viewToShow != null)
+            {
+                viewToShow.Opacity = 1;
+            }
+            if (viewToHide != null)
+            {
+                viewToHide.Opacity = 1;
+            }
             rootLayout.Animate("descriptionAnimation", (arg) =>
                 {
                     if (viewToShow != null)
                     {
-                        viewToShow.HeightRequest = arg * targetLayoutHeight;
+                        viewToShow.HeightRequest = Math.Round(arg * targetLayoutHeight);
                         viewToShow.Opacity = arg;
                     }
                     if (viewToHide != null)
                     {
-                        viewToHide.HeightRequest = (1 - arg) * targetLayoutHeight;
+                        viewToHide.HeightRequest = Math.Round((1 - arg) * targetLayoutHeight);
                         viewToHide.Opacity = (1 - arg);
                     }
                 }, 16, 250, Easing.CubicInOut, (a, b) =>
                 {
                     if (viewToShow != null)
+                    {
                         viewToShow.HeightRequest = targetLayoutHeight;
-                    //viewToShow.Opacity = 1;
+                        viewToShow.Opacity = 1;
+                    }
                     if (viewToHide != null)
+                    {
                         viewToHide.HeightRequest = 0;
-                    //viewToShow.Opacity = 0;
+                        viewToHide.Opacity = 0;
+                    }
+                    //(viewToShow as Layout)?.ForceLayout();
+                    //(viewToHide as Layout)?.ForceLayout();
                 });
         }
 
         private Xamarin.Forms.View GetDisplayedView()
         {
-            if (descriptionALayout.Height > 0)
+            // Sometimes after calling "view.HeightRequest = 0" value of "view.Height" may be ~0.33
+            // perhaps it's a droid-specific bug
+            const int hiddenHeight = 1; 
+            const float hiddenOpacity = 0.1f;
+            if (descriptionALayout.Height > hiddenHeight && descriptionALayout.Opacity > hiddenOpacity)
             {
                 return descriptionALayout;
             }
-            else if (descriptionBLayout.Height > 0)
+            else if (descriptionBLayout.Height > hiddenHeight && descriptionBLayout.Opacity > hiddenOpacity)
             {
                 return descriptionBLayout;
             }
-            else if (descriptionCLayout.Height > 0)
+            else if (descriptionCLayout.Height > hiddenHeight && descriptionCLayout.Opacity > hiddenOpacity)
             {
                 return descriptionCLayout;
             }

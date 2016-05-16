@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Model
+namespace RetroGameGauntlet.Model
 {
     public interface IPlatformLoader
     {

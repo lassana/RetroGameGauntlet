@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Xamarin.Forms;
 
-using Xamarin.Forms;
-
-namespace Core
+namespace RetroGameGauntlet.Core
 {
     public class Colors
     {

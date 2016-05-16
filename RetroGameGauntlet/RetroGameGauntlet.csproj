@@ -32,23 +32,8 @@
   <ItemGroup>
     <Compile Include="RetroGameGauntlet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\Random\RandomPage.xaml.cs">
-      <DependentUpon>RandomPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Main\TopPage.xaml.cs">
-      <DependentUpon>TopPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\PlatformViewModel.cs" />
-    <Compile Include="View\Search\SearchPlatformsPage.xaml.cs">
-      <DependentUpon>SearchPlatformsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\About\AboutPage.xaml.cs">
-      <DependentUpon>AboutPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ITabbedPageChild.cs" />
-    <Compile Include="View\Overview\OverviewPage.xaml.cs">
-      <DependentUpon>OverviewPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Model\IPlatformLoader.cs" />
     <Compile Include="Model\FlickApiSearchResponseModel.cs" />
     <Compile Include="Core\FlickImageSearch.cs" />
@@ -56,6 +41,22 @@
     <Compile Include="Core\WikipediaSearch.cs" />
     <Compile Include="Model\WikipediaApiSearchResponseModel.cs" />
     <Compile Include="ViewModel\WikipediaLinkViewModel.cs" />
+    <Compile Include="View\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TopPage.xaml.cs">
+      <DependentUpon>TopPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OverviewPage.xaml.cs">
+      <DependentUpon>OverviewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RandomPage.xaml.cs">
+      <DependentUpon>RandomPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SearchPlatformsPage.xaml.cs">
+      <DependentUpon>SearchPlatformsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TranspButton.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.2.0.31\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.2.0.31\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -93,29 +94,24 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="View\" />
-    <Folder Include="View\Main\" />
-    <Folder Include="View\Random\" />
     <Folder Include="ViewModel\" />
     <Folder Include="Model\" />
-    <Folder Include="View\Search\" />
-    <Folder Include="View\About\" />
-    <Folder Include="View\Overview\" />
     <Folder Include="Core\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Random\RandomPage.xaml">
+    <EmbeddedResource Include="View\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Main\TopPage.xaml">
+    <EmbeddedResource Include="View\TopPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Search\SearchPlatformsPage.xaml">
+    <EmbeddedResource Include="View\OverviewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\About\AboutPage.xaml">
+    <EmbeddedResource Include="View\RandomPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Overview\OverviewPage.xaml">
+    <EmbeddedResource Include="View\SearchPlatformsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -2,14 +2,10 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Model
+namespace RetroGameGauntlet.Model
 {
     public class WikipediaApiSearchResponseModel
     {
-        public WikipediaApiSearchResponseModel()
-        {
-        }
-
         [JsonProperty("batchcomplete")]
         public string BatchComplete { get; set; }
 

@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Model;
 using System.Threading.Tasks;
-using Core;
-using Xamarin.Forms;
+using RetroGameGauntlet.Core;
 using System.Text.RegularExpressions;
-using System.Net;
 
-namespace ViewModel
+namespace RetroGameGauntlet.ViewModel
 {
     public class WikipediaLinkViewModel
     {

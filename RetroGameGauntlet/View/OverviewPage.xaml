@@ -2,7 +2,8 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="View.Overview.OverviewPage"
+	xmlns:local="clr-namespace:RetroGameGauntlet;assembly=RetroGameGauntlet"
+	x:Class="RetroGameGauntlet.View.OverviewPage"
 	Title="Loading...">
 	<ContentPage.Content>
 		<AbsoluteLayout
@@ -15,10 +16,12 @@
 				AbsoluteLayout.LayoutBounds="0,0,1,1"
 				AbsoluteLayout.LayoutFlags="All">
 				<Button
+					x:Name="descriptionATitle"
 					HeightRequest="50"
+					BorderWidth="0"
+					BackgroundColor="Transparent"
 					Font="Press Start"
 					FontSize="Micro"
-					x:Name="descriptionATitle"
 					TextColor="White"
 					BorderRadius="0"
 					Clicked="OnTitleClicked">
@@ -52,14 +55,15 @@
 				</AbsoluteLayout>
 				<Button
 					HeightRequest="50"
+					BorderWidth="0"
+					BackgroundColor="Transparent"
 					Font="Press Start"
 					FontSize="Micro"
 					Text="Wikipedia says"
 					x:Name="descriptionBTitle"
 					TextColor="White"
 					BorderRadius="0"
-					Clicked="OnTitleClicked">
-				</Button>
+					Clicked="OnTitleClicked" />
 				<ListView
 					x:Name="descriptionBLayout"
 					HeightRequest="0"
@@ -88,6 +92,8 @@
 				</ListView>
 				<Button
 					HeightRequest="50"
+					BorderWidth="0"
+					BackgroundColor="Transparent"
 					Font="Press Start"
 					FontSize="Micro"
 					Text="And more"
@@ -104,6 +110,8 @@
 					<StackLayout
 						Padding="6">
 						<Button
+							BorderWidth="0"
+							BackgroundColor="Transparent"
 							Image="img_share.png"
 							Text="Share the game"
 							Clicked="OnShareClicked"
@@ -111,6 +119,8 @@
 							TextColor="White">
 						</Button>
 						<Button
+							BorderWidth="0"
+							BackgroundColor="Transparent"
 							x:Name="clipboardButton"
 							Image="img_clipboard.png"
 							Text="Copy name to clipboard"
@@ -119,6 +129,8 @@
 							TextColor="White">
 						</Button>
 						<Button
+							BorderWidth="0"
+							BackgroundColor="Transparent"
 							x:Name="seachButton"
 							Image="img_search.png"
 							Text="Find more"

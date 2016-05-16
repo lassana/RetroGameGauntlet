@@ -4,18 +4,13 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using System.Net;
-using Model;
-using System.Linq;
+using RetroGameGauntlet.Model;
 using System.Collections.Generic;
 
-namespace Core
+namespace RetroGameGauntlet.Core
 {
     public class WikipediaSearch
     {
-        public WikipediaSearch()
-        {
-        }
-
         public async Task<List<WikipediaApiSearchResponseModel.QueryModel.SearchModel>> GetWikipediaLinks(string query) 
         {
             var link = GetSearchUrl(query);

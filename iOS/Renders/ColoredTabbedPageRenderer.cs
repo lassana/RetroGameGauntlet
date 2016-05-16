@@ -1,11 +1,10 @@
-﻿using System;
-using Xamarin.Forms.Platform.iOS;
-using Core;
+﻿using Xamarin.Forms.Platform.iOS;
+using RetroGameGauntlet.Core;
 using Xamarin.Forms;
-using Renders;
+using RetroGameGauntlet.iOS.Renders;
 
 [assembly: ExportRenderer(typeof(TabbedPage), typeof(ColoredTabbedPageRenderer))]
-namespace Renders
+namespace RetroGameGauntlet.iOS.Renders
 {
     public class ColoredTabbedPageRenderer : TabbedRenderer 
     {

@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Xamarin.Forms;
 
-using Xamarin.Forms;
-using View.Random;
-using View.Search;
-using View.About;
-using ViewModel;
-
-namespace View.Main
+namespace RetroGameGauntlet.View
 {
     public partial class TopPage : TabbedPage
     {

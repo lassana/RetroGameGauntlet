@@ -2,9 +2,8 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="View.About.AboutPage"
-	Title="About"
-	Icon="ico_notepad.png">
+	x:Class="RetroGameGauntlet.View.AboutPage"
+	Title="About">
 	<ContentPage.Content>
 		<AbsoluteLayout
 			x:Name="absoluteLayout"

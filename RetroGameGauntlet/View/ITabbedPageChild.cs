@@ -1,12 +1,9 @@
-﻿using System;
-
-using Xamarin.Forms;
-
-namespace View
+﻿namespace RetroGameGauntlet.View
 {
     public interface ITabbedPageChild
     {
         void Opened();
+
         void Closed();
     }
 }

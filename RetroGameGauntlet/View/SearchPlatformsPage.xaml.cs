@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms;
-using ViewModel;
-using Model;
-using View.Overview;
+using RetroGameGauntlet.Model;
 
-namespace View.Search
+namespace RetroGameGauntlet.View
 {
     public partial class SearchPlatformsPage : ContentPage
     {
@@ -15,6 +12,10 @@ namespace View.Search
         public SearchPlatformsPage()
         {
             InitializeComponent();
+            if(Device.OS == TargetPlatform.iOS)
+            {
+                Icon = "ico_search.png";
+            }
         }
 
         private void OnSearchRequested(object sender, TextChangedEventArgs args)

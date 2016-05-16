@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Xamarin.Forms;
+using RetroGameGauntlet.ViewModel;
 
-using Xamarin.Forms;
-using ViewModel;
-using View.Overview;
-
-namespace View.Random
+namespace RetroGameGauntlet.View
 {
     public partial class RandomPage : ContentPage
     {
         public RandomPage()
         {
             InitializeComponent();
+
+            if (Device.OS == TargetPlatform.iOS)
+            {
+                Icon = "ico_application.png";
+            }
 
             listView.ItemsSource = PlatformViewModel.List;
         }

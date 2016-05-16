@@ -1,31 +1,25 @@
 ﻿using System;
-using RetroGameGauntlet.Model;
 using Xamarin.Forms;
-using Foundation;
-using System.IO;
+using RetroGameGauntlet.Droid.DI;
+using RetroGameGauntlet.Model;
 using System.Collections.Generic;
-using System.Linq;
-using RetroGameGauntlet.iOS.DI;
 using RetroGameGauntlet.ViewModel;
+using System.Linq;
+using System.IO;
 using System.Globalization;
 
 [assembly: Dependency (typeof (PlatformLoader))]
-namespace RetroGameGauntlet.iOS.DI
+namespace RetroGameGauntlet.Droid.DI
 {
     public class PlatformLoader : IPlatformLoader
     {
         private List<KeyValuePair<string, string>> platforms;
 
-        public PlatformLoader()
-        {
-        }
-
         #region IPlatformLoader implementation
 
         public string GetRandomGame(string platform)
         {
-            string filePath = NSBundle.MainBundle.PathForResource("platforms/" + platform, "");
-            var fileReader = new StreamReader(filePath);
+            var fileReader = new StreamReader(Forms.Context.Assets.Open("platforms/" + platform));
             string nextLine;
             List<string> games = new List<string>();
             while((nextLine=fileReader.ReadLine()) != null)
@@ -48,8 +42,7 @@ namespace RetroGameGauntlet.iOS.DI
             List<KeyValuePair<string, string>> games = new List<KeyValuePair<string, string>>();
             foreach (var platform in platforms)
             {
-                string filePath = NSBundle.MainBundle.PathForResource("platforms/" + platform.Key, "");
-                var fileReader = new StreamReader(filePath);
+                var fileReader = new StreamReader(Forms.Context.Assets.Open("platforms/" + platform.Key));
                 string nextLine;
                 while((nextLine=fileReader.ReadLine()) != null)
                 {

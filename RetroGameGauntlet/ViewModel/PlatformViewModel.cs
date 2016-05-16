@@ -1,8 +1,7 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using System.Collections.Generic;
 
-namespace ViewModel
+namespace RetroGameGauntlet.ViewModel
 {
     public class PlatformViewModel
     {
