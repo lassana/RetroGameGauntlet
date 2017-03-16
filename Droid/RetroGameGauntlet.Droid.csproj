@@ -102,12 +102,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RetroGameGauntlet\RetroGameGauntlet.csproj">
-      <Project>{53DD8172-871D-487A-B01F-92C67EE61B8B}</Project>
-      <Name>RetroGameGauntlet</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

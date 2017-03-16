@@ -10,7 +10,7 @@ namespace RetroGameGauntlet.Forms.Views
         {
             InitializeComponent();
 
-            //Children.Add(new RandomPage());
+            Children.Add(new RandomPage());
             Children.Add(new SearchPlatformsPage());
             Children.Add(new AboutPage());
 

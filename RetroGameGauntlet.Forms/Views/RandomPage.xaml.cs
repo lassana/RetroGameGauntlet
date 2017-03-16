@@ -1,7 +1,7 @@
-﻿using Xamarin.Forms;
-using RetroGameGauntlet.ViewModel;
+﻿using RetroGameGauntlet.Forms.ViewModels;
+using Xamarin.Forms;
 
-namespace RetroGameGauntlet.View
+namespace RetroGameGauntlet.Forms.Views
 {
     public partial class RandomPage : ContentPage
     {
@@ -13,10 +13,7 @@ namespace RetroGameGauntlet.View
             {
                 Icon = "ico_application.png";
             }
-
-            listView.ItemsSource = PlatformViewModel.List;
         }
-
 
         private void OnItemTap(object sender, SelectedItemChangedEventArgs e)
         {
@@ -24,9 +21,8 @@ namespace RetroGameGauntlet.View
             {
                 return;
             }
-            Navigation.PushAsync(new OverviewPage{ TargetPlatform = (e.SelectedItem as PlatformViewModel) });
+            Navigation.PushAsync(new OverviewPage { TargetPlatform = (e.SelectedItem as PlatformItemViewModel) });
             ((ListView)sender).SelectedItem = null;
         }
     }
 }
-

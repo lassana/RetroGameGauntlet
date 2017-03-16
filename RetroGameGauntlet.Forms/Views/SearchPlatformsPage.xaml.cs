@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace RetroGameGauntlet.Forms.Views
 {
@@ -19,7 +20,7 @@ namespace RetroGameGauntlet.Forms.Views
             {
                 return;
             }
-            //Navigation.PushAsync(new OverviewPage { TargetGame = (KeyValuePair<string, string>) e.SelectedItem });
+            Navigation.PushAsync(new OverviewPage { TargetGame = (KeyValuePair<string, string>) e.SelectedItem });
             ((ListView)sender).SelectedItem = null;
         }
     }

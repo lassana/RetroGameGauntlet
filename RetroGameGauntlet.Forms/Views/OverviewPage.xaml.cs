@@ -1,15 +1,15 @@
-﻿using Xamarin.Forms;
-using System;
-using System.Threading.Tasks;
-using RetroGameGauntlet.Model;
-using RetroGameGauntlet.ViewModel;
-using System.Diagnostics;
-using RetroGameGauntlet.Core;
+﻿using System;
 using System.Collections.Generic;
+using RetroGameGauntlet.Forms.ViewModels;
+using Xamarin.Forms;
+using RetroGameGauntlet.Forms.Services;
 using Plugin.Share;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
-namespace RetroGameGauntlet.View
+namespace RetroGameGauntlet.Forms.Views
 {
+    //TODO rewrite it using MVVM
     public partial class OverviewPage : ContentPage
     {
         private double targetLayoutHeight;
@@ -17,7 +17,7 @@ namespace RetroGameGauntlet.View
         private string gameName;
         private string platformName;
 
-        public PlatformViewModel TargetPlatform
+        public PlatformItemViewModel TargetPlatform
         {
             set
             {
@@ -25,7 +25,7 @@ namespace RetroGameGauntlet.View
             }
         }
 
-        public KeyValuePair<string,string> TargetGame
+        public KeyValuePair<string, string> TargetGame
         {
             set
             {
@@ -44,8 +44,8 @@ namespace RetroGameGauntlet.View
 
             SizeChanged += OnSizeChanged;
 
-            descriptionLayout.BackgroundColor = Colors.BackgroundColor;
-            descriptionCLayout.BackgroundColor = Colors.BackgroundColorLighter;
+            descriptionLayout.BackgroundColor = (Color) Application.Current.Resources["backgroundColor"];
+            descriptionCLayout.BackgroundColor = (Color)Application.Current.Resources["backgroundColorLighter"];
 
             loadingLayout.IsVisible = true;
             descriptionLayout.IsVisible = false;
@@ -64,7 +64,7 @@ namespace RetroGameGauntlet.View
 
             await Task.Delay(250 * 2);
 
-            var image = await new FlickImageSearch().GetImageForGame(gameName, platformName);
+            var image = await new FlickrImageSearchService().GetImageForGame(gameName, platformName);
             Debug.WriteLine("The Flickr link is " + image);
             flickrImage.Source = image;
 
@@ -76,16 +76,16 @@ namespace RetroGameGauntlet.View
             descriptionLayout.IsVisible = true;
             AnimateDescriptionViews(descriptionALayout, null);
 
-            descriptionBLayout.ItemsSource = await WikipediaLinkViewModel.ForQuery(gameName);
+            descriptionBLayout.ItemsSource = await new WikipediaSearchService().GetItemsForQuery(gameName);
         }
 
-        private async void LoadGameInfo(PlatformViewModel targetPlatform)
+        private async void LoadGameInfo(PlatformItemViewModel targetPlatform)
         {
             if (targetPlatform == null)
             {
                 return;
             }
-            var newGameName = DependencyService.Get<IPlatformLoader>().GetRandomGame(targetPlatform.FileName);
+            var newGameName = DependencyService.Get<IPlatformLoaderService>().GetRandomGame(targetPlatform.PlatformModel.FileName);
             await InitGame(newGameName, targetPlatform.Title);
         }
 
@@ -106,7 +106,7 @@ namespace RetroGameGauntlet.View
             {
                 return;
             }
-            var wikiPage = e.SelectedItem as WikipediaLinkViewModel;
+            var wikiPage = e.SelectedItem as WikipediaItemViewModel;
             //CrossShare.Current.OpenBrowser(wikiPage.Url, new BrowserOptions { UseSafairReaderMode = true });
             Device.OpenUri(wikiPage.Uri);
             ((ListView)sender).SelectedItem = null;
@@ -165,7 +165,7 @@ namespace RetroGameGauntlet.View
         {
             // Sometimes after calling "view.HeightRequest = 0" value of "view.Height" may be ~0.33
             // perhaps it's a droid-specific bug
-            const int hiddenHeight = 1; 
+            const int hiddenHeight = 1;
             const float hiddenOpacity = 0.1f;
             if (descriptionALayout.Height > hiddenHeight && descriptionALayout.Opacity > hiddenOpacity)
             {
@@ -221,4 +221,3 @@ namespace RetroGameGauntlet.View
         }
     }
 }
-

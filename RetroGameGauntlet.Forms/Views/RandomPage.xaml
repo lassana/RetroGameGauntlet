@@ -1,18 +1,20 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="RetroGameGauntlet.View.RandomPage"
+	xmlns:design="clr-namespace:RetroGameGauntlet.Forms.ViewModels;assembly=RetroGameGauntlet.Forms"
+	x:Class="RetroGameGauntlet.Forms.Views.RandomPage"
+	BindingContext="{x:Static design:ViewModelLocator.RandomViewModel}"
 	Title="Gauntlet">
 	<ContentPage.Content>
 		<ListView
-			x:Name="listView"
-			ItemSelected="OnItemTap">
+			ItemSelected="OnItemTap"
+			ItemsSource="{Binding Platforms}">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<TextCell
 						Text="{Binding Title}"
-						Detail="{Binding Comment}">
+						Detail="{Binding Description}">
 					</TextCell>
 				</DataTemplate>
 			</ListView.ItemTemplate>

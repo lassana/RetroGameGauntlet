@@ -1,11 +1,12 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage
-	xmlns="http://xamarin.com/schemas/2014/forms"
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:local="clr-namespace:RetroGameGauntlet;assembly=RetroGameGauntlet"
-	x:Class="RetroGameGauntlet.View.OverviewPage"
-	Title="Loading...">
-	<ContentPage.Content>
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:design="clr-namespace:RetroGameGauntlet.Forms.ViewModels;assembly=RetroGameGauntlet.Forms"
+    x:Class="RetroGameGauntlet.Forms.Views.OverviewPage"
+	BindingContext="{x:Static design:ViewModelLocator.OverviewViewModel}"
+	Title="{Binding Title}">
+    <ContentPage.Content>
 		<AbsoluteLayout
 			x:Name="rootLayout">
 			<StackLayout
@@ -167,5 +168,5 @@
 				</StackLayout>
 			</Frame>
 		</AbsoluteLayout>
-	</ContentPage.Content>
+    </ContentPage.Content>
 </ContentPage>
