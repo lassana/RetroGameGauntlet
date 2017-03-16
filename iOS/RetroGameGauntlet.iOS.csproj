@@ -100,9 +100,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RetroGameGauntlet\RetroGameGauntlet.csproj">
-      <Project>{53DD8172-871D-487A-B01F-92C67EE61B8B}</Project>
-      <Name>RetroGameGauntlet</Name>
+    <ProjectReference Include="..\RetroGameGauntlet.Forms\RetroGameGauntlet.Forms.csproj">
+      <Project>{DC6A13C5-8A5B-4083-AA1C-1787885262FC}</Project>
+      <Name>RetroGameGauntlet.Forms</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -137,8 +137,8 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="DI\PlatformLoader.cs" />
     <Compile Include="Renders\ColoredTabbedPageRenderer.cs" />
+    <Compile Include="Services\PlatformLoaderService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.2.0.31\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.2.0.31\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -171,7 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\platforms\" />
-    <Folder Include="DI\" />
     <Folder Include="Renders\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>

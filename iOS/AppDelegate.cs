@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using UIKit;
+using RetroGameGauntlet.Forms;
 
 namespace RetroGameGauntlet.iOS
 {
@@ -12,7 +13,7 @@ namespace RetroGameGauntlet.iOS
 
             UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, false);
 
-            LoadApplication(new App());
+            LoadApplication(new RetroGameGauntletApp());
 
             return base.FinishedLaunching(app, options);
         }

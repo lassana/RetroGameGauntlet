@@ -1,15 +1,16 @@
 ﻿using System;
-
 using Xamarin.Forms;
-using RetroGameGauntlet.Core;
+using RetroGameGauntlet.Forms.ViewModels;
 
-namespace RetroGameGauntlet.View
+namespace RetroGameGauntlet.Forms.Views
 {
     public partial class AboutPage : ContentPage
     {
-        private Point? forkLabelPoint;
-        private double forkLabelSide;
-        private bool isDisplayed;
+        public AboutViewModel ViewModel { get { return BindingContext as AboutViewModel; } }
+
+        private Point? _forkLabelPoint;
+        private double _forkLabelSide;
+        private bool _isDisplayed;
 
         public AboutPage()
         {
@@ -26,7 +27,7 @@ namespace RetroGameGauntlet.View
                 iOS: () =>
                 {
                     SizeChanged += MoveForkLabel;
-                }, 
+                },
                 Android: () =>
                 {
                     SizeChanged += MoveForkLabel;
@@ -42,7 +43,7 @@ namespace RetroGameGauntlet.View
                 return;
             }
 
-            forkLabelSide = (forkLabel.Width / Math.Sqrt(2));
+            _forkLabelSide = (forkLabel.Width / Math.Sqrt(2));
             var x = Width - (forkLabel.Width / Math.Sqrt(2)) + (forkLabel.Height / (Math.Sqrt(2)));
             var y = -forkLabel.Height / Math.Sqrt(2);
 
@@ -50,45 +51,36 @@ namespace RetroGameGauntlet.View
             forkLabel.AnchorY = 0;
             forkLabel.Rotation = 45;
 
-            forkLabelPoint = new Point(x, y);
+            _forkLabelPoint = new Point(x, y);
 
-            if (forkLabel.Opacity > 0 && isDisplayed)
+            if (forkLabel.Opacity > 0 && _isDisplayed)
             {
                 AnimateForkLabel();
             }
         }
 
-        private void OnForkTapped(object sender, EventArgs args)
-        {
-            Device.OpenUri(new Uri("https://github.com/lassana/RetroGameGauntlet"));
-        }
-
         private async void AnimateForkLabel()
         {
-            if (forkLabelPoint != null)
+            if (_forkLabelPoint != null)
             {
                 SetForkLabelOpacity(0);
-                await forkLabel.TranslateTo(forkLabelPoint.Value.X + forkLabelSide, forkLabelPoint.Value.Y - forkLabelSide, 0, Easing.Linear);
+                await forkLabel.TranslateTo(_forkLabelPoint.Value.X + _forkLabelSide, _forkLabelPoint.Value.Y - _forkLabelSide, 0, Easing.Linear);
                 SetForkLabelOpacity(1);
-                await forkLabel.TranslateTo(forkLabelPoint.Value.X, forkLabelPoint.Value.Y, 250 * 2, Easing.CubicInOut);
+                await forkLabel.TranslateTo(_forkLabelPoint.Value.X, _forkLabelPoint.Value.Y, 250 * 2, Easing.CubicInOut);
             }
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
-            isDisplayed = true;
+            _isDisplayed = true;
             AnimateForkLabel();
-            var newRandomImage = await new FlickImageSearch().GetImage();
-            if (newRandomImage != (randomImage.Source as UriImageSource)?.Uri?.AbsoluteUri)
-            {
-                randomImage.Source = newRandomImage;
-            }
+            Device.BeginInvokeOnMainThread(async () => await ViewModel.InitAsync());
         }
 
         private void SetForkLabelOpacity(double value)
         {
-            if(Device.OS == Xamarin.Forms.TargetPlatform.iOS)
+            if (Device.OS == TargetPlatform.iOS)
             {
                 forkLabel.Opacity = value;
             }
@@ -97,13 +89,12 @@ namespace RetroGameGauntlet.View
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            isDisplayed = false;
+            _isDisplayed = false;
             SetForkLabelOpacity(0);
-            if (forkLabelPoint != null)
+            if (_forkLabelPoint != null)
             {
-                forkLabel.TranslateTo(forkLabelPoint.Value.X + forkLabelSide, forkLabelPoint.Value.Y - forkLabelSide, 0, Easing.Linear);
+                forkLabel.TranslateTo(_forkLabelPoint.Value.X + _forkLabelSide, _forkLabelPoint.Value.Y - _forkLabelSide, 0, Easing.Linear);
             }
         }
     }
 }
-

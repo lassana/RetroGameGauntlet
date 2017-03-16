@@ -1,4 +1,4 @@
-﻿namespace RetroGameGauntlet.View
+﻿namespace RetroGameGauntlet.Forms.Views
 {
     public interface ITabbedPageChild
     {

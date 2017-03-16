@@ -30,31 +30,13 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="RetroGameGauntlet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\PlatformViewModel.cs" />
-    <Compile Include="View\ITabbedPageChild.cs" />
-    <Compile Include="Model\IPlatformLoader.cs" />
-    <Compile Include="Model\FlickApiSearchResponseModel.cs" />
-    <Compile Include="Core\FlickImageSearch.cs" />
-    <Compile Include="Core\Colors.cs" />
-    <Compile Include="Core\WikipediaSearch.cs" />
-    <Compile Include="Model\WikipediaApiSearchResponseModel.cs" />
     <Compile Include="ViewModel\WikipediaLinkViewModel.cs" />
-    <Compile Include="View\AboutPage.xaml.cs">
-      <DependentUpon>AboutPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TopPage.xaml.cs">
-      <DependentUpon>TopPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\OverviewPage.xaml.cs">
       <DependentUpon>OverviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RandomPage.xaml.cs">
       <DependentUpon>RandomPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SearchPlatformsPage.xaml.cs">
-      <DependentUpon>SearchPlatformsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TranspButton.cs" />
   </ItemGroup>
@@ -95,23 +77,12 @@
   <ItemGroup>
     <Folder Include="View\" />
     <Folder Include="ViewModel\" />
-    <Folder Include="Model\" />
-    <Folder Include="Core\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\AboutPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\TopPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\OverviewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="View\RandomPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\SearchPlatformsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

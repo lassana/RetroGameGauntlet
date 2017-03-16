@@ -1,15 +1,14 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using System.Net;
-using RetroGameGauntlet.Model;
 using System.Collections.Generic;
+using RetroGameGauntlet.Forms.Models.Api;
 
-namespace RetroGameGauntlet.Core
+namespace RetroGameGauntlet.Forms.Services
 {
-    public class WikipediaSearch
+    public class WikipediaSearchService
     {
         public async Task<List<WikipediaApiSearchResponseModel.QueryModel.SearchModel>> GetWikipediaLinks(string query) 
         {

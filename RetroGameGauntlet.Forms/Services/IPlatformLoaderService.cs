@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace RetroGameGauntlet.Model
+namespace RetroGameGauntlet.Forms.Services
 {
-    public interface IPlatformLoader
+    public interface IPlatformLoaderService
     {
         string GetRandomGame(string platform);
 

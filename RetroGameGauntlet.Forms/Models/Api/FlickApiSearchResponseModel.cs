@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace RetroGameGauntlet.Model
+namespace RetroGameGauntlet.Forms.Models.Api
 {
     public class FlickApiSearchResponseModel
     {

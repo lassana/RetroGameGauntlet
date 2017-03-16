@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace RetroGameGauntlet.Model
+namespace RetroGameGauntlet.Forms.Models.Api
 {
     public class WikipediaApiSearchResponseModel
     {

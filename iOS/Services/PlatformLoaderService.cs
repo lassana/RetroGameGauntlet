@@ -1,22 +1,22 @@
 ﻿using System;
-using RetroGameGauntlet.Model;
 using Xamarin.Forms;
 using Foundation;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
-using RetroGameGauntlet.iOS.DI;
-using RetroGameGauntlet.ViewModel;
+using RetroGameGauntlet.iOS.Services;
 using System.Globalization;
+using RetroGameGauntlet.Forms.Services;
+using RetroGameGauntlet.Forms.Models;
 
-[assembly: Dependency (typeof (PlatformLoader))]
-namespace RetroGameGauntlet.iOS.DI
+[assembly: Dependency (typeof (PlatformLoaderService))]
+namespace RetroGameGauntlet.iOS.Services
 {
-    public class PlatformLoader : IPlatformLoader
+    public class PlatformLoaderService : IPlatformLoaderService
     {
         private List<KeyValuePair<string, string>> platforms;
 
-        public PlatformLoader()
+        public PlatformLoaderService()
         {
         }
 
@@ -43,7 +43,7 @@ namespace RetroGameGauntlet.iOS.DI
         {
             if (platforms == null)
             {
-                platforms = PlatformViewModel.List.Select((arg) => new KeyValuePair<string, string>(arg.FileName, arg.Title)).ToList();
+                platforms = Platforms.All.Select((arg) => new KeyValuePair<string, string>(arg.FileName, arg.Title)).ToList();
             }
             List<KeyValuePair<string, string>> games = new List<KeyValuePair<string, string>>();
             foreach (var platform in platforms)

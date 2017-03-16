@@ -1,15 +1,14 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using RetroGameGauntlet.Model;
+using RetroGameGauntlet.Forms.Models.Api;
 
-namespace RetroGameGauntlet.Core
+namespace RetroGameGauntlet.Forms.Services
 {
-    public class FlickImageSearch
+    public class FlickrImageSearchService
     {
         private const string ApiKey = "78d991c72ad7a124dcef3c2796d6f4ea";
 
