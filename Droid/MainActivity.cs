@@ -2,23 +2,27 @@
 using Android.Content.PM;
 using Android.OS;
 using Xamarin.Forms.Platform.Android;
-using Xamarin.Forms;
+using RetroGameGauntlet.Forms;
+using RetroGameGauntlet.Forms.Services;
+using SimpleInjector;
+using RetroGameGauntlet.Droid.Services;
 
 namespace RetroGameGauntlet.Droid
 {
     [Activity(Label = "RetroGameGauntlet.Droid", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {
-        protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
-            FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
-            FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
+            ToolbarResource = Resource.Layout.toolbar;
+            TabLayoutResource = Resource.Layout.tabs;
 
-            base.OnCreate(bundle);
+            base.OnCreate(savedInstanceState);
 
-            Forms.Init(this, bundle);
+            Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            LoadApplication(new App());
+            RetroGameGauntletApp.Container.Register<IPlatformLoaderService, PlatformLoaderService>(Lifestyle.Singleton);
+            LoadApplication(new RetroGameGauntletApp());
         }
     }
 }

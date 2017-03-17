@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:design="clr-namespace:RetroGameGauntlet.Forms.ViewModels;assembly=RetroGameGauntlet.Forms"
+    x:Class="RetroGameGauntlet.Forms.Views.AboutPage"
+	BindingContext="{x:Static design:ViewModelLocator.AboutViewModel}"
+	Title="About">
+    <ContentPage.Content>
+		<AbsoluteLayout
+			Padding="0">
+			<Label
+				x:Name="forkLabel"
+				BackgroundColor="Gray"
+				TextColor="White"
+				FontAttributes="Bold"
+				Text="    Fork me on Github    "
+				FontSize="Micro">
+				<Label.GestureRecognizers>
+					<TapGestureRecognizer
+						Command="{Binding ForkTapCommand}"/>
+				</Label.GestureRecognizers>
+			</Label>
+			<StackLayout
+				Orientation="Vertical"
+				AbsoluteLayout.LayoutBounds=".5,0.5,-1,-1"
+				AbsoluteLayout.LayoutFlags="PositionProportional">
+				<Image
+					WidthRequest="200"
+					HeightRequest="200"
+					BackgroundColor="#40000000"
+					Aspect="AspectFill"
+					Source="{Binding RandomImageSource}">
+				</Image>
+				<Label
+					Text="Retro Game Gauntlet"
+					Font="Press Start"
+					FontSize="Micro"
+					HorizontalTextAlignment="Center">
+				</Label>
+				<Label
+					FontSize="Micro"
+					Font="Press Start"
+					HorizontalTextAlignment="Center"
+					Text="{Binding VersionName}">
+				</Label>
+			</StackLayout>
+		</AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

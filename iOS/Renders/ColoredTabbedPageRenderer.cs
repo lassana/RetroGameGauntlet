@@ -1,5 +1,4 @@
 ﻿using Xamarin.Forms.Platform.iOS;
-using RetroGameGauntlet.Core;
 using Xamarin.Forms;
 using RetroGameGauntlet.iOS.Renders;
 
@@ -11,7 +10,7 @@ namespace RetroGameGauntlet.iOS.Renders
         public ColoredTabbedPageRenderer ()
         {
             TabBar.TintColor = Color.White.ToUIColor();
-            TabBar.BarTintColor = Colors.BackgroundColor.ToUIColor();
+            TabBar.BarTintColor = ((Color)Xamarin.Forms.Application.Current.Resources["backgroundColor"]).ToUIColor();
             TabBar.BackgroundColor = Color.Blue.ToUIColor();
         }
     }
