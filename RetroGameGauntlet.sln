@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetroGameGauntlet.iOS", "iOS\RetroGameGauntlet.iOS.csproj", "{4E9E4DB6-18AC-4D55-839E-5278B8A6344C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetroGameGauntlet.iOS", "RetroGameGauntlet.iOS\RetroGameGauntlet.iOS.csproj", "{4E9E4DB6-18AC-4D55-839E-5278B8A6344C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetroGameGauntlet.Droid", "Droid\RetroGameGauntlet.Droid.csproj", "{CE246A45-8870-4604-929C-D2E8DF070CD7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetroGameGauntlet.Droid", "RetroGameGauntlet.Droid\RetroGameGauntlet.Droid.csproj", "{CE246A45-8870-4604-929C-D2E8DF070CD7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetroGameGauntlet.Forms", "RetroGameGauntlet.Forms\RetroGameGauntlet.Forms.csproj", "{DC6A13C5-8A5B-4083-AA1C-1787885262FC}"
 EndProject
