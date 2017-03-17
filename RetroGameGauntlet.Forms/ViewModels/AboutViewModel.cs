@@ -31,11 +31,11 @@ namespace RetroGameGauntlet.Forms.ViewModels
 
         public string VersionName { get { return "1.0"; } }
 
-        private readonly FlickrImageSearchService _imageSearchService;
+        private readonly IImageSearchService _imageSearchService;
 
-        public AboutViewModel()
+        public AboutViewModel(IImageSearchService imageSearchService)
         {
-            _imageSearchService = new FlickrImageSearchService();
+            _imageSearchService = imageSearchService;
         }
 
         public async Task InitAsync()

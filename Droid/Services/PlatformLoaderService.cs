@@ -1,17 +1,14 @@
 ﻿using System;
-using Xamarin.Forms;
-using RetroGameGauntlet.Droid.DI;
-using RetroGameGauntlet.Model;
 using System.Collections.Generic;
-using RetroGameGauntlet.ViewModel;
 using System.Linq;
 using System.IO;
 using System.Globalization;
+using RetroGameGauntlet.Forms.Services;
+using RetroGameGauntlet.Forms.Models;
 
-[assembly: Dependency (typeof (PlatformLoader))]
-namespace RetroGameGauntlet.Droid.DI
+namespace RetroGameGauntlet.Droid.Services
 {
-    public class PlatformLoader : IPlatformLoader
+    public class PlatformLoaderService : IPlatformLoaderService
     {
         private List<KeyValuePair<string, string>> platforms;
 
@@ -19,7 +16,7 @@ namespace RetroGameGauntlet.Droid.DI
 
         public string GetRandomGame(string platform)
         {
-            var fileReader = new StreamReader(Forms.Context.Assets.Open("platforms/" + platform));
+            var fileReader = new StreamReader(Xamarin.Forms.Forms.Context.Assets.Open("platforms/" + platform));
             string nextLine;
             List<string> games = new List<string>();
             while((nextLine=fileReader.ReadLine()) != null)
@@ -37,12 +34,12 @@ namespace RetroGameGauntlet.Droid.DI
         {
             if (platforms == null)
             {
-                platforms = PlatformViewModel.List.Select((arg) => new KeyValuePair<string, string>(arg.FileName, arg.Title)).ToList();
+                platforms = Platforms.All.Select((arg) => new KeyValuePair<string, string>(arg.FileName, arg.Title)).ToList();
             }
             List<KeyValuePair<string, string>> games = new List<KeyValuePair<string, string>>();
             foreach (var platform in platforms)
             {
-                var fileReader = new StreamReader(Forms.Context.Assets.Open("platforms/" + platform.Key));
+                var fileReader = new StreamReader(Xamarin.Forms.Forms.Context.Assets.Open("platforms/" + platform.Key));
                 string nextLine;
                 while((nextLine=fileReader.ReadLine()) != null)
                 {

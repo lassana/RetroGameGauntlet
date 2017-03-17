@@ -9,7 +9,6 @@ using System.Globalization;
 using RetroGameGauntlet.Forms.Services;
 using RetroGameGauntlet.Forms.Models;
 
-[assembly: Dependency (typeof (PlatformLoaderService))]
 namespace RetroGameGauntlet.iOS.Services
 {
     public class PlatformLoaderService : IPlatformLoaderService

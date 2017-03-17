@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using RetroGameGauntlet.Forms.Services;
-using Xamarin.Forms;
 
 namespace RetroGameGauntlet.Forms.ViewModels
 {
@@ -37,9 +36,9 @@ namespace RetroGameGauntlet.Forms.ViewModels
 
         private readonly IPlatformLoaderService _platformLoader;
 
-        public SearchPlatformsViewModel()
+        public SearchPlatformsViewModel(IPlatformLoaderService platformLoader)
         {
-            _platformLoader = DependencyService.Get<IPlatformLoaderService>();
+            _platformLoader = platformLoader;
         }
 
         private void Handle_SearchTextChanged()

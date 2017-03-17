@@ -21,7 +21,7 @@ namespace RetroGameGauntlet.Forms.Views
             {
                 return;
             }
-            Navigation.PushAsync(new OverviewPage { TargetPlatform = (e.SelectedItem as PlatformItemViewModel) });
+            Navigation.PushAsync(new OverviewPage(targetPlatform: (e.SelectedItem as PlatformItemViewModel) ));
             ((ListView)sender).SelectedItem = null;
         }
     }

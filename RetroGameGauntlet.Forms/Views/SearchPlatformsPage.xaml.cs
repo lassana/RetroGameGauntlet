@@ -20,7 +20,7 @@ namespace RetroGameGauntlet.Forms.Views
             {
                 return;
             }
-            Navigation.PushAsync(new OverviewPage { TargetGame = (KeyValuePair<string, string>) e.SelectedItem });
+            Navigation.PushAsync(new OverviewPage(targetGame: (KeyValuePair<string, string>) e.SelectedItem ));
             ((ListView)sender).SelectedItem = null;
         }
     }

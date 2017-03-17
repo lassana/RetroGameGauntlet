@@ -12,7 +12,7 @@ using System;
 
 namespace RetroGameGauntlet.Forms.Services
 {
-    public class WikipediaSearchService
+    public class WikipediaSearchService : IWikipediaSearchService
     {
         public async Task<List<WikipediaApiSearchResponseModel.QueryModel.SearchModel>> GetWikipediaLinks(string query) 
         {

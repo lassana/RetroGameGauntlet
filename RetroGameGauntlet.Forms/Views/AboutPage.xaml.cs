@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using RetroGameGauntlet.Forms.ViewModels;
+using System.Threading.Tasks;
 
 namespace RetroGameGauntlet.Forms.Views
 {
@@ -61,12 +62,19 @@ namespace RetroGameGauntlet.Forms.Views
 
         private async void AnimateForkLabel()
         {
-            if (_forkLabelPoint != null)
+            if (Device.OS == TargetPlatform.iOS)
             {
-                SetForkLabelOpacity(0);
-                await forkLabel.TranslateTo(_forkLabelPoint.Value.X + _forkLabelSide, _forkLabelPoint.Value.Y - _forkLabelSide, 0, Easing.Linear);
-                SetForkLabelOpacity(1);
-                await forkLabel.TranslateTo(_forkLabelPoint.Value.X, _forkLabelPoint.Value.Y, 250 * 2, Easing.CubicInOut);
+                if (_forkLabelPoint != null)
+                {
+                    SetForkLabelOpacity(0);
+                    await forkLabel.TranslateTo(_forkLabelPoint.Value.X + _forkLabelSide, _forkLabelPoint.Value.Y - _forkLabelSide, 0, Easing.Linear);
+                    SetForkLabelOpacity(1);
+                    await forkLabel.TranslateTo(_forkLabelPoint.Value.X, _forkLabelPoint.Value.Y, 250 * 2, Easing.CubicInOut);
+                }
+            }
+            else
+            {
+                forkLabel.IsVisible = false;
             }
         }
 

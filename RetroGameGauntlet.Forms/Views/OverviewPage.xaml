@@ -11,7 +11,9 @@
 			x:Name="rootLayout">
 			<StackLayout
 				x:Name="descriptionLayout"
+				IsVisible="false"
 				Orientation="Vertical"
+				BackgroundColor="{StaticResource backgroundColor}"
 				Padding="0"
 				Spacing="0"
 				AbsoluteLayout.LayoutBounds="0,0,1,1"
@@ -23,6 +25,7 @@
 					BackgroundColor="Transparent"
 					Font="Press Start"
 					FontSize="Micro"
+					Text="{Binding Description}"
 					TextColor="White"
 					BorderRadius="0"
 					Clicked="OnTitleClicked">
@@ -34,7 +37,7 @@
 						AbsoluteLayout.LayoutBounds="0,0,1,1"
 						AbsoluteLayout.LayoutFlags="All"
 						Aspect="AspectFill"
-						x:Name="flickrImage">
+						Source="{Binding LogoImageSource}">
 					</Image>
 					<AbsoluteLayout
 						x:Name="titleLayout"
@@ -43,7 +46,7 @@
 						AbsoluteLayout.LayoutBounds="0.5,1,70,50"
 						AbsoluteLayout.LayoutFlags="PositionProportional">
 						<Label
-							x:Name="gameNameLabel"
+							Text="{Binding Title}"
 							TextColor="White"
 							Font="Press Start"
 							FontSize="Micro"
@@ -69,6 +72,7 @@
 					x:Name="descriptionBLayout"
 					HeightRequest="0"
 					HasUnevenRows="true"
+					ItemsSource="{Binding WikipediaItems}"
 					ItemSelected="OnWikipediaItemTap">
 					<ListView.ItemTemplate>
 						<DataTemplate>
@@ -105,6 +109,7 @@
 				</Button>
 				<AbsoluteLayout
 					x:Name="descriptionCLayout"
+					BackgroundColor="{StaticResource backgroundColorLighter}"
 					HeightRequest="0"
 					AbsoluteLayout.LayoutBounds="0,0,1,1"
 					AbsoluteLayout.LayoutFlags="All">
@@ -115,27 +120,26 @@
 							BackgroundColor="Transparent"
 							Image="img_share.png"
 							Text="Share the game"
-							Clicked="OnShareClicked"
+							Command="{Binding ShareClickCommand}"
 							HorizontalOptions="Start"
 							TextColor="White">
 						</Button>
 						<Button
 							BorderWidth="0"
 							BackgroundColor="Transparent"
-							x:Name="clipboardButton"
 							Image="img_clipboard.png"
 							Text="Copy name to clipboard"
-							Clicked="OnCopyToClipboardClicked"
+							IsEnabled="{Binding IsClipboardEnabled}"
+							Command="{Binding CopyToClipboardClickCommand}"
 							HorizontalOptions="Start"
 							TextColor="White">
 						</Button>
 						<Button
 							BorderWidth="0"
 							BackgroundColor="Transparent"
-							x:Name="seachButton"
+							Text="{Binding SearchButtonText}"
 							Image="img_search.png"
-							Text="Find more"
-							Clicked="OnSearchClicked"
+							Command="{Binding SearchClickCommand}"
 							HorizontalOptions="Start"
 							TextColor="White">
 						</Button>
@@ -145,6 +149,7 @@
 			<Frame
 				x:Name="loadingLayout"
 				BackgroundColor="Gray"
+				IsVisible="true"
 				OutlineColor="Transparent"
 				AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
 				AbsoluteLayout.LayoutFlags="PositionProportional">

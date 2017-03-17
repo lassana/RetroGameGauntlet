@@ -8,7 +8,7 @@ using RetroGameGauntlet.Forms.Models.Api;
 
 namespace RetroGameGauntlet.Forms.Services
 {
-    public class FlickrImageSearchService
+    public class FlickrImageSearchService : IImageSearchService
     {
         private const string ApiKey = "78d991c72ad7a124dcef3c2796d6f4ea";
 

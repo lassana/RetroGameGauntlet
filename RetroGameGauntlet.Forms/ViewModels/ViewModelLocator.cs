@@ -2,12 +2,12 @@
 {
     public static class ViewModelLocator
     {
-        public static AboutViewModel AboutViewModel => new AboutViewModel();
+        public static AboutViewModel AboutViewModel => RetroGameGauntletApp.Container.GetInstance<AboutViewModel>();
 
-        public static SearchPlatformsViewModel SearchPlatformsViewModel => new SearchPlatformsViewModel();
+        public static SearchPlatformsViewModel SearchPlatformsViewModel => RetroGameGauntletApp.Container.GetInstance<SearchPlatformsViewModel>();
 
         public static RandomViewModel RandomViewModel => new RandomViewModel();
 
-        public static OverviewViewModel OverviewViewModel => new OverviewViewModel();
+        public static OverviewViewModel OverviewViewModel => RetroGameGauntletApp.Container.GetInstance<OverviewViewModel>();
     }
 }

@@ -8,7 +8,6 @@
 	Title="About">
     <ContentPage.Content>
 		<AbsoluteLayout
-			x:Name="absoluteLayout"
 			Padding="0">
 			<Label
 				x:Name="forkLabel"

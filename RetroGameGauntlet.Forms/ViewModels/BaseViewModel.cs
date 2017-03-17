@@ -6,7 +6,6 @@ namespace RetroGameGauntlet.Forms.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
-        private INavigation _navigation;
         public event PropertyChangedEventHandler PropertyChanged;
 
         private bool _isLoading;
@@ -47,11 +46,6 @@ namespace RetroGameGauntlet.Forms.ViewModels
 
         protected BaseViewModel()
         {
-        }
-
-        protected BaseViewModel(INavigation navigation)
-        {
-            _navigation = navigation;
         }
 
         protected void RaisePropertyChanged(params string[] propertyNames)
