@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:design="clr-namespace:RetroGameGauntlet.PCL.ViewModels;assembly=RetroGameGauntlet.PCL"
+    BindingContext="{x:Static design:ViewModelLocator.RandomsViewModel}"
+    x:Class="RetroGameGauntlet.PCL.Views.RandomsPage"
+    Title="Gauntlet">
+    <ContentPage.Content>
+        <ListView
+            ItemSelected="Handle_ItemTapped"
+            ItemsSource="{Binding Platforms}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell
+                        Text="{Binding Title}"
+                        Detail="{Binding Description}">
+                    </TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

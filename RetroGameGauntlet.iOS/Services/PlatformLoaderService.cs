@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using RetroGameGauntlet.iOS.Services;
 using System.Globalization;
-using RetroGameGauntlet.Forms.Services;
-using RetroGameGauntlet.Forms.Models;
+using RetroGameGauntlet.PCL.Services;
+using RetroGameGauntlet.PCL.Models;
+using System.Threading.Tasks;
 
 namespace RetroGameGauntlet.iOS.Services
 {
@@ -21,45 +22,55 @@ namespace RetroGameGauntlet.iOS.Services
 
         #region IPlatformLoader implementation
 
-        public string GetRandomGame(string platform)
+        public async Task<string> GetRandomGame(string platform)
         {
-            string filePath = NSBundle.MainBundle.PathForResource("platforms/" + platform, "");
-            var fileReader = new StreamReader(filePath);
-            string nextLine;
-            List<string> games = new List<string>();
-            while((nextLine=fileReader.ReadLine()) != null)
+            string rvalue = null;
+            await Task.Run(() =>
             {
-                games.Add(nextLine);
-            }
-            fileReader.Close();
+                string filePath = NSBundle.MainBundle.PathForResource("platforms/" + platform, "");
+                var fileReader = new StreamReader(filePath);
+                string nextLine;
+                List<string> games = new List<string>();
+                while ((nextLine = fileReader.ReadLine()) != null)
+                {
+                    games.Add(nextLine);
+                }
+                fileReader.Close();
 
-            Random rnd = new Random();
-            return games[rnd.Next(0,games.Count)];
+                Random rnd = new Random();
+                rvalue = games[rnd.Next(0, games.Count)];
+            });
+            return rvalue;
         }
 
 
-        public List<KeyValuePair<string, string>> FindGames(string query)
+        public async Task<IEnumerable<KeyValuePair<string, string>>> FindGamesFor(string query)
         {
-            if (platforms == null)
+            IEnumerable<KeyValuePair<string, string>> rvalue = null;
+            await Task.Run(() =>
             {
-                platforms = Platforms.All.Select((arg) => new KeyValuePair<string, string>(arg.FileName, arg.Title)).ToList();
-            }
-            List<KeyValuePair<string, string>> games = new List<KeyValuePair<string, string>>();
-            foreach (var platform in platforms)
-            {
-                string filePath = NSBundle.MainBundle.PathForResource("platforms/" + platform.Key, "");
-                var fileReader = new StreamReader(filePath);
-                string nextLine;
-                while((nextLine=fileReader.ReadLine()) != null)
+                if (platforms == null)
                 {
-                    if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(nextLine, query, CompareOptions.IgnoreCase) >= 0)
-                    {
-                        games.Add(new KeyValuePair<string,string>(nextLine, platform.Value));
-                    }
+                    platforms = Platforms.All.Select((arg) => new KeyValuePair<string, string>(arg.FileName, arg.Title)).ToList();
                 }
-                fileReader.Close();
-            }
-            return games;
+                List<KeyValuePair<string, string>> games = new List<KeyValuePair<string, string>>();
+                foreach (var platform in platforms)
+                {
+                    string filePath = NSBundle.MainBundle.PathForResource("platforms/" + platform.Key, "");
+                    var fileReader = new StreamReader(filePath);
+                    string nextLine;
+                    while ((nextLine = fileReader.ReadLine()) != null)
+                    {
+                        if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(nextLine, query, CompareOptions.IgnoreCase) >= 0)
+                        {
+                            games.Add(new KeyValuePair<string, string>(nextLine, platform.Value));
+                        }
+                    }
+                    fileReader.Close();
+                }
+                rvalue = games;
+            });
+            return rvalue;
         }
         #endregion
     }

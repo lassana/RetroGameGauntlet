@@ -1,0 +1,91 @@
+﻿namespace RetroGameGauntlet.PCL.Views
+
+open RetroGameGauntlet.PCL.ViewModels
+open System
+open System.Diagnostics
+open Xamarin.Forms
+open Xamarin.Forms.Xaml
+
+type AboutPage() as this = 
+    inherit ContentPage()
+    let _ = base.LoadFromXaml(typeof<AboutPage>)
+    let iOS = Device.OS = TargetPlatform.iOS // Device.RuntimePlatform causes crash
+    let mutable isVisible: bool = false
+    let mutable forkLabelPoint: Option<Point> = None
+    let mutable forkLabelSide: float = 0.0
+
+    do
+        if iOS then
+            base.Icon <- FileImageSource(File="ico_notepad.png")
+            let hdlr = EventHandler(fun sender args -> 
+                let finalState = this.Width > 0.0
+                                 && this.Height > 0.0
+                                 && this.ForkLabel.Width > 0.0
+                                 && this.ForkLabel.Height > 0.0
+                if finalState then
+                    forkLabelSide <- this.ForkLabel.Width / Math.Sqrt(2.0)
+                    let x = this.Width - (this.ForkLabel.Width / Math.Sqrt(2.0)) + (this.ForkLabel.Height / Math.Sqrt(2.0))
+                    let y = -this.ForkLabel.Height / Math.Sqrt(2.0)
+
+                    this.ForkLabel.AnchorX <- 0.0
+                    this.ForkLabel.AnchorY <- 0.0
+                    this.ForkLabel.Rotation <- 45.0
+
+                    forkLabelPoint <- Some(Point(x,y))
+
+                    if this.ForkLabelOpacity > 0.0 && isVisible then 
+                        this.AnimateForkLabel()
+                )
+            this.SizeChanged.AddHandler hdlr
+
+    member this.ViewModel = base.BindingContext :?> AboutViewModel
+
+    member this.ForkLabel: Label = base.Content.FindByName<Label> "forkLabel"
+
+    member this.ForkLabelOpacity 
+        with get() = this.ForkLabel.Opacity
+        and set parameter = 
+            if iOS then
+                this.ForkLabel.Opacity <- parameter
+
+    member this.AnimateForkLabel() =
+        if iOS then
+            if forkLabelPoint.IsSome then
+                async {
+                    //TODO why these lines are not awaited?
+                    this.ForkLabelOpacity <- 0.33
+                    this.ForkLabel.TranslateTo(forkLabelPoint.Value.X + forkLabelSide, forkLabelPoint.Value.Y - forkLabelSide, 2000u, Easing.Linear) 
+                        |> Async.AwaitTask
+                        |> ignore 
+                    this.ForkLabelOpacity <- 0.5
+                    this.ForkLabel.TranslateTo(forkLabelPoint.Value.X, forkLabelPoint.Value.Y, 2000u, Easing.CubicInOut) 
+                        |> Async.AwaitTask 
+                        |> ignore
+                    this.ForkLabelOpacity <- 1.0
+                }
+                |> Async.RunSynchronously
+        else
+            this.ForkLabel.IsVisible <- false
+
+    override this.OnAppearing() = 
+        base.OnAppearing()
+        isVisible <- true
+        System.Diagnostics.Debug.WriteLine "OnAppearing"
+        this.AnimateForkLabel()
+        Device.BeginInvokeOnMainThread(fun () -> 
+            async {
+                this.ViewModel.InitAsync |> Async.AwaitTask |> ignore
+            }
+            |> Async.Start)
+
+    override this.OnDisappearing() =
+        base.OnDisappearing()
+        isVisible <- false
+        this.ForkLabelOpacity <- 0.0
+        async {
+            if forkLabelPoint.IsSome then
+                this.ForkLabel.TranslateTo(forkLabelPoint.Value.X + forkLabelSide, forkLabelPoint.Value.Y - forkLabelSide, 0u, Easing.Linear) 
+                |> Async.AwaitTask 
+                |> ignore
+        }
+        |> Async.RunSynchronously

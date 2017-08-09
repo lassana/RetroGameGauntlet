@@ -1,8 +1,9 @@
 ﻿using Foundation;
 using UIKit;
-using RetroGameGauntlet.Forms;
-using RetroGameGauntlet.Forms.Services;
+using RetroGameGauntlet.PCL;
+using RetroGameGauntlet.PCL.Services;
 using RetroGameGauntlet.iOS.Services;
+using RetroGameGauntlet.PCL.ViewModels;
 using SimpleInjector;
 
 namespace RetroGameGauntlet.iOS
@@ -16,7 +17,10 @@ namespace RetroGameGauntlet.iOS
 
             UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, false);
 
-            RetroGameGauntletApp.Container.Register<IPlatformLoaderService, PlatformLoaderService>(Lifestyle.Singleton);
+            RetroGameGauntletCore.Container.Register<IPlatformLoaderService, PlatformLoaderService>(Lifestyle.Singleton);
+            RetroGameGauntletCore.Container.Register<IWikipediaSearchService, WikipediaSearchService>(Lifestyle.Singleton);
+            RetroGameGauntletCore.Container.Register<IImageSearchService, FlickrImageSearchService>(Lifestyle.Singleton);
+            RetroGameGauntletCore.Container.Register<AboutViewModel>(Lifestyle.Singleton);
             LoadApplication(new RetroGameGauntletApp());
 
             return base.FinishedLaunching(uiApplication, launchOptions);
