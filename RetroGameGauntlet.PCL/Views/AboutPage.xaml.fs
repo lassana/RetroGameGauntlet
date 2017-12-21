@@ -52,18 +52,17 @@ type AboutPage() as this =
         if iOS then
             if forkLabelPoint.IsSome then
                 async {
-                    //TODO why these lines are not awaited?
-                    this.ForkLabelOpacity <- 0.33
-                    this.ForkLabel.TranslateTo(forkLabelPoint.Value.X + forkLabelSide, forkLabelPoint.Value.Y - forkLabelSide, 2000u, Easing.Linear) 
+                    this.ForkLabelOpacity <- 0.0
+                    do!
+                        this.ForkLabel.TranslateTo(forkLabelPoint.Value.X + forkLabelSide, forkLabelPoint.Value.Y - forkLabelSide, 0u, Easing.Linear)
                         |> Async.AwaitTask
-                        |> ignore 
-                    this.ForkLabelOpacity <- 0.5
-                    this.ForkLabel.TranslateTo(forkLabelPoint.Value.X, forkLabelPoint.Value.Y, 2000u, Easing.CubicInOut) 
-                        |> Async.AwaitTask 
-                        |> ignore
+                        |> Async.Ignore
                     this.ForkLabelOpacity <- 1.0
-                }
-                |> Async.RunSynchronously
+                    do!
+                        this.ForkLabel.TranslateTo(forkLabelPoint.Value.X, forkLabelPoint.Value.Y, 450u, Easing.CubicInOut) 
+                        |> Async.AwaitTask
+                        |> Async.Ignore
+                } |> Async.StartImmediate
         else
             this.ForkLabel.IsVisible <- false
 
