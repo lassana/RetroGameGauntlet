@@ -14,15 +14,15 @@ type OverviewViewModel(loaderService: IPlatformLoaderService,
                        imageSearchService: IImageSearchService,
                        wikiSearchService: IWikipediaSearchService) =
     inherit ViewModelBase()
-    let gameName: string = String.Empty
-    let platformName: string = String.Empty
+    let mutable selectedGameName: string = String.Empty
+    let mutable selectedPlatformName: string = String.Empty
     
-    let shareMessage() = new ShareMessage(Text = String.Format("My {0} game is {1}", platformName, gameName), Title = gameName)
+    let shareMessage() = new ShareMessage(Text = String.Format("My {0} game is {1}", selectedPlatformName, selectedGameName), Title = selectedGameName)
     let shareClickCommand: ICommand = new Command(fun () -> 
                                                     CrossShare.Current.Share(shareMessage()) 
                                                     |> ignore) :> ICommand
 
-    let clipboardText() = String.Format("My {0} game is {1}", platformName, gameName)
+    let clipboardText() = String.Format("My {0} game is {1}", selectedPlatformName, selectedGameName)
     let copyToClipboardClickCommand: ICommand = new Command(fun () -> 
                                                                 CrossShare.Current.SetClipboardText(clipboardText())
                                                                 |> ignore ) :> ICommand
@@ -34,6 +34,8 @@ type OverviewViewModel(loaderService: IPlatformLoaderService,
     let mutable description: string = System.String.Empty
     let mutable searchButtonText: string = "Find more"
     let mutable wikipediaItems: IEnumerable<WikipediaItemViewModel> = Seq.empty
+
+    let eventInitialized = new Event<_>()
 
     member this.Title
         with get() = title
@@ -72,55 +74,43 @@ type OverviewViewModel(loaderService: IPlatformLoaderService,
         and set parameter =
             wikipediaItems <- parameter
             this.NotifyPropertyChanged <@ this.Description @>
+    
+    [<CLIEvent>]
+    member public this.Initialized = eventInitialized.Publish
 
-    //public event EventHandler<EventArgs> Initialized;
+    member public this.Init (targetPlatform: PlatformItemViewModel) : Async<unit> =
+        async {
+            Debug.WriteLine("OverviewViewModel: Initializing...")
+            let! newGameName = loaderService.GetRandomGame(targetPlatform.PlatformModel.FileName) |> Async.AwaitTask
+            let gameName = newGameName
+            let platformName = targetPlatform.Title
+            return! this.InitGame(gameName, platformName)
+        }
+    
+    member public this.Init (targetGame: KeyValuePair<string, string>) : Async<unit> =
+        async {
+            Debug.WriteLine("OverviewViewModel: Initializing...")
+            let gameName = targetGame.Key
+            let platformName = targetGame.Value
+            return! this.InitGame(gameName, platformName)
+        }
 
-    //public Task InitAsync(PlatformItemViewModel targetPlatform)
-    //{
-    //    return Task.Factory.StartNew(async () =>
-    //    {
-    //        if (targetPlatform == null)
-    //        {
-    //            return;
-    //        }
-    //        var newGameName = _loaderService.GetRandomGame(targetPlatform.PlatformModel.FileName);
-    //        _gameName = newGameName;
-    //        _platformName = targetPlatform.Title;
-    //        await InitGameAsync();
-    //    });
-    //}
+    member public this.InitListItems () : Async<unit> =
+        async {
+            let! items = (wikiSearchService.GetItemsForQuery selectedGameName) |> Async.AwaitTask
+            this.WikipediaItems <- items
+        }
 
-    //public Task InitAsync(KeyValuePair<string, string> targetGame)
-    //{
-    //    return Task.Factory.StartNew(async () =>
-    //    {
-    //        _gameName = targetGame.Key;
-    //        _platformName = targetGame.Value;
-    //        await InitGameAsync();
-    //    });
-    //}
-
-    //public Task InitListItemsAsync()
-    //{
-    //    return Task.Factory.StartNew(async () =>
-    //    {
-    //        WikipediaItems = await _wikiSearchService.GetItemsForQuery(_gameName);
-    //    });
-    //}
-
-    //private Task InitGameAsync()
-    //{
-    //    return Task.Factory.StartNew(async () =>
-    //    {
-
-    //        var image = await _imageSearchService.GetImageForGame(_gameName, _platformName);
-    //        Debug.WriteLine("The Flickr link is " + image);
-    //        LogoImageSource = image;
-
-    //        Title = _gameName;
-    //        Description = string.Format("Your {0} game", _platformName);
-    //        SearchButtonText = string.Format("Search \"{0} {1}\"", _platformName, _gameName);
-
-    //        Initialized?.Invoke(this, EventArgs.Empty);
-    //    });
-    //}
+    member public this.InitGame (gameName: string, platformName: string) : Async<unit> =
+        async {
+            let! image = (imageSearchService.GetImageForGame gameName platformName) |> Async.AwaitTask
+            Debug.WriteLine("The Flickr link is " + image)
+            if String.IsNullOrEmpty image |> not then
+                this.LogoImageSource <- UriImageSource(Uri=Uri(image))
+            selectedGameName <- gameName
+            selectedPlatformName <- platformName
+            this.Title <- gameName
+            this.Description <- String.Format("Your {0} game", platformName)
+            this.SearchButtonText <- String.Format("Search \"{0} {1}\"", platformName, gameName)
+            eventInitialized.Trigger(this, EventArgs.Empty)
+        }
