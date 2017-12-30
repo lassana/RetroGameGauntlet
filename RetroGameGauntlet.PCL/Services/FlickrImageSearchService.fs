@@ -9,7 +9,7 @@ open System.Linq
 open System.Net.Http
 open System.Net
 
-/// THeaders Flickr image service.
+/// The Flickr image service.
 type FlickrImageSearchService() = 
     let apiKey: string = "78d991c72ad7a124dcef3c2796d6f4ea";
 

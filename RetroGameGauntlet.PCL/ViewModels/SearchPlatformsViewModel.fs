@@ -31,7 +31,7 @@ type SearchPlatformsViewModel(platformLoader: IPlatformLoaderService) =
                 this.Games <- Seq.empty
             else 
                 async {
-                    let! newGames = platformLoader.FindGamesForAsync(searchText) |> Async.AwaitTask
+                    let! newGames = platformLoader.FindGamesForAsync(searchText)
                     this.Games <- newGames
                 }
                 |> Async.RunSynchronously

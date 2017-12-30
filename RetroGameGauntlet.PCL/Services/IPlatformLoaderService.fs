@@ -7,7 +7,7 @@ open System.Threading.Tasks
 type IPlatformLoaderService = 
 
     /// Gets the random game for a platform.
-    abstract member GetRandomGameAsync: string -> Task<string>
+    abstract member GetRandomGameAsync: string -> Async<string>
 
     /// Gets the full list of games for a platform.
-    abstract member FindGamesForAsync: string -> Task<IEnumerable<KeyValuePair<string, string>>>
+    abstract member FindGamesForAsync: string -> Async<IEnumerable<KeyValuePair<string, string>>>

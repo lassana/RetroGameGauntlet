@@ -93,7 +93,7 @@ type OverviewViewModel(loaderService: IPlatformLoaderService,
     member public this.InitAsync (targetPlatform: PlatformItemViewModel) : Async<unit> =
         async {
             Debug.WriteLine("OverviewViewModel: Initializing...")
-            let! newGameName = loaderService.GetRandomGameAsync(targetPlatform.PlatformModel.FileName) |> Async.AwaitTask
+            let! newGameName = loaderService.GetRandomGameAsync(targetPlatform.PlatformModel.FileName)
             let gameName = newGameName
             let platformName = targetPlatform.Title
             return! this.InitGameAsync(gameName, platformName)
