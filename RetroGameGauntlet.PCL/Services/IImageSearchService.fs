@@ -2,8 +2,11 @@
 
 open System.Threading.Tasks
 
+/// The image search service.
 type IImageSearchService = 
 
-    abstract member GetImage: Task<string>
+    /// Returns the random image URL.
+    abstract member GetImageAsync: Async<string>
 
-    abstract member GetImageForGame: gameName:string -> platformName:string -> Task<string>
+    /// Returns the random image URL for a game name.
+    abstract member GetImageForGameAsync: gameName:string -> platformName:string -> Async<string>

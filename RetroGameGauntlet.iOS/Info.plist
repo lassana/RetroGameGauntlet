@@ -9,7 +9,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.0.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -48,5 +48,7 @@
 	<true/>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons-1.appiconset</string>
+	<key>CFBundleName</key>
+	<string>Retro Game Gauntlet</string>
 </dict>
 </plist>

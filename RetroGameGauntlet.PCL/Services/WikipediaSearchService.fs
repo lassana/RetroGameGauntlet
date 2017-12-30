@@ -11,14 +11,17 @@ open System.Net.Http
 open System.Net
 open System.Text.RegularExpressions
 
+/// The Wikipedia search service.
 type WikipediaSearchService() = 
 
     interface IWikipediaSearchService with
-        member this.GetWikipediaLinks (query: string) =
+
+        /// Returns the list of Wikipedia queries.
+        member this.GetWikipediaLinksAsync (query: string) =
             async {
                 let link = this.GetSearchUrl(query);
                 try
-                    let! response = RetroGameGauntletCore.HttpClient.GetAsync(link) |> Async.AwaitTask
+                    let! response = GauntletCore.HttpClient.GetAsync(link) |> Async.AwaitTask
                     if response.StatusCode = HttpStatusCode.OK then
                         let! responseBody = response.Content.ReadAsStringAsync() |> Async.AwaitTask
                         Debug.WriteLine(System.String.Format("Request URI is {0}, response JSON is {1}", link, responseBody))
@@ -31,11 +34,11 @@ type WikipediaSearchService() =
                     Debug.WriteLine("Error in GetWikipediaLinks: " + e.ToString())
                     return Seq.empty<WikipediaQuerySearchModel>
             }
-            |> Async.StartAsTask
 
-        member this.GetItemsForQuery (squery: string) =
+        /// Returns the list of Wikipedia pages for query.
+        member this.GetItemsForQueryAsync (squery: string) =
             async {
-                let! wikiPage = (this :> IWikipediaSearchService).GetWikipediaLinks(squery) |> Async.AwaitTask
+                let! wikiPage = (this :> IWikipediaSearchService).GetWikipediaLinksAsync(squery)
                 if wikiPage |> Seq.isEmpty then
                     return Seq.empty<WikipediaItemViewModel>
                 else
@@ -43,7 +46,6 @@ type WikipediaSearchService() =
                         WikipediaItemViewModel(a.Title, this.HtmlToPlainText(a.Snippet)))
                     return rvalue
             }
-            |> Async.StartAsTask
 
     member private this.GetSearchUrl query: string =
         "https://en.wikipedia.org/w/api.php"

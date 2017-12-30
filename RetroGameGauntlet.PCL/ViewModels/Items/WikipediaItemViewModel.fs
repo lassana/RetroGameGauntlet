@@ -2,6 +2,7 @@
 
 open System
 
+/// The Wikipedia link view model.
 type WikipediaItemViewModel(title: string, description: string) = 
     member this.Title = title
     member this.Description = description

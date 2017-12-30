@@ -137,6 +137,8 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renders\ColoredTabbedPageRenderer.cs" />
     <Compile Include="Services\PlatformLoaderService.cs" />
+    <Compile Include="Adapters\SafariLauncherAdapter.cs" />
+    <Compile Include="Adapters\AppInfoAdapter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -170,6 +172,7 @@
     <Folder Include="Resources\platforms\" />
     <Folder Include="Renders\" />
     <Folder Include="Services\" />
+    <Folder Include="Adapters\" />
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Forms.2.5.0.122203\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.5.0.122203\build\netstandard1.0\Xamarin.Forms.targets')" />
 </Project>

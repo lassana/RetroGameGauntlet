@@ -1,15 +1,16 @@
 ﻿namespace RetroGameGauntlet.PCL.ViewModels
 
 open System
-open RetroGameGauntlet.PCL.Models
 open RetroGameGauntlet.PCL.Services
 open System.Collections.Generic
 
+/// The "Search" page view model.
 type SearchPlatformsViewModel(platformLoader: IPlatformLoaderService) =
     inherit ViewModelBase()
     let mutable games: seq<KeyValuePair<string, string>> = Seq.empty
     let mutable searchText: string = String.Empty
 
+    /// The listview source.
     member this.Games
         with get() = games
         and set parameter =
@@ -17,8 +18,10 @@ type SearchPlatformsViewModel(platformLoader: IPlatformLoaderService) =
             this.NotifyPropertyChanged <@ this.Games @>
             this.NotifyPropertyChanged <@ this.HasItems @>
 
+    /// A member describes if there is any game in the listview source.
     member this.HasItems = not (this.Games |> Seq.isEmpty)
 
+    /// The serach filter.
     member this.SearchText
         with get() = searchText
         and set parameter =
@@ -28,7 +31,7 @@ type SearchPlatformsViewModel(platformLoader: IPlatformLoaderService) =
                 this.Games <- Seq.empty
             else 
                 async {
-                    let! newGames = platformLoader.FindGamesFor(searchText) |> Async.AwaitTask
+                    let! newGames = platformLoader.FindGamesForAsync(searchText) |> Async.AwaitTask
                     this.Games <- newGames
                 }
                 |> Async.RunSynchronously

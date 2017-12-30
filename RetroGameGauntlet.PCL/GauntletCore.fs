@@ -1,13 +1,11 @@
 ﻿namespace RetroGameGauntlet.PCL
 
 open SimpleInjector
-open System.Diagnostics
-open System.Net
 open System.Net.Http
-open Xamarin.Forms
 
+/// The app's core.
 [<AbstractClass; Sealed>]
-type RetroGameGauntletCore() = 
+type GauntletCore() = 
     static let container = new Container()
     static let httpClient = new HttpClient()
 

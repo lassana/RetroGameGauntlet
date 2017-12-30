@@ -17,6 +17,7 @@ type WikipediaQuerySearchInfoModel = {
     TotalHits: int
 }
 
+/// The Wikipedia query search response.
 type WikipediaQuerySearchModel = {
     [<JsonProperty("ns")>] //: 0,
     Ns: int
@@ -45,6 +46,7 @@ type WikipediaQueryModel = {
     Search: IEnumerable<WikipediaQuerySearchModel> 
 }
 
+/// The Wikipedia response.
 type WikipediaSearchResponseModel = {
 
     [<JsonProperty("batchcomplete")>]

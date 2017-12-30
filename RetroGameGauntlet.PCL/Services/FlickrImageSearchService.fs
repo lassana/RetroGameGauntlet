@@ -9,6 +9,7 @@ open System.Linq
 open System.Net.Http
 open System.Net
 
+/// THeaders Flickr image service.
 type FlickrImageSearchService() = 
     let apiKey: string = "78d991c72ad7a124dcef3c2796d6f4ea";
 
@@ -22,27 +23,28 @@ type FlickrImageSearchService() =
         + "&text=" + query
 
     interface IImageSearchService with
-        member this.GetImage =
+
+        /// Returns the random image URL.
+        member this.GetImageAsync =
             async {
                 let link = this.GetLinkForQuery("retro game")
                 let! a = this.GetImageFromLink(link)
                 return if a.IsSome then a.Value else System.String.Empty
             }
-            |> Async.StartAsTask
 
-        member this.GetImageForGame gameName platformName = 
+        /// Returns the random image URL for a game name.
+        member this.GetImageForGameAsync gameName platformName = 
             async {
                 let! img = this.GetImageFromLink(this.GetLinkForQuery(gameName + " " + platformName))
                 return if img.IsSome then img.Value else System.String.Empty
             }
-            |> Async.StartAsTask
 
 
     member private this.GetImageFromLink (link: string) : Async<Option<string>> = 
         async {
             try
                 Debug.WriteLine("GetImageFromLink " + link)
-                let! response = RetroGameGauntletCore.HttpClient.GetAsync(link) |> Async.AwaitTask
+                let! response = GauntletCore.HttpClient.GetAsync(link) |> Async.AwaitTask
                 let! responseBody = response.Content.ReadAsStringAsync() |> Async.AwaitTask
                 Debug.WriteLine(System.String.Format("Request URI is {0}, response JSON is {1}", link, responseBody))
                 let responseObject = JsonConvert.DeserializeObject<FlickSearchResponseModel>(responseBody)

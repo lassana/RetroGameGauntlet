@@ -1,15 +1,15 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using RetroGameGauntlet.PCL;
 using Xamarin.Forms.Platform.Android;
-using RetroGameGauntlet.Forms;
-using RetroGameGauntlet.Forms.Services;
-using SimpleInjector;
-using RetroGameGauntlet.Droid.Services;
 
 namespace RetroGameGauntlet.Droid
 {
-    [Activity(Label = "RetroGameGauntlet.Droid", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "RetroGameGauntlet.Droid",
+              Icon = "@drawable/icon", 
+              MainLauncher = true, 
+              ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -21,8 +21,7 @@ namespace RetroGameGauntlet.Droid
 
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            RetroGameGauntletApp.Container.Register<IPlatformLoaderService, PlatformLoaderService>(Lifestyle.Singleton);
-            LoadApplication(new RetroGameGauntletApp());
+            LoadApplication(new GauntletApp());
         }
     }
 }

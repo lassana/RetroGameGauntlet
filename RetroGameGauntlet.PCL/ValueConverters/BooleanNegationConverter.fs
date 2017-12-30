@@ -4,6 +4,7 @@ open System
 open System.Globalization
 open Xamarin.Forms
 
+/// The true-false boolean converter.
 type BooleanNegationConverter() =
 
     interface IValueConverter with

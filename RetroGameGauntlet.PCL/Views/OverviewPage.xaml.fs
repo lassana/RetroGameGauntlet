@@ -2,6 +2,7 @@
 
 open System
 open System.Collections.Generic
+open System.Diagnostics
 open System.Threading.Tasks
 open RetroGameGauntlet.PCL.ViewModels
 open Xamarin.Forms
@@ -22,7 +23,7 @@ type OverviewPage(targetPlatform: Option<PlatformItemViewModel>,
             this.DescriptionBLayout.BackgroundColor <- Color.White
 
         let sizeHandler = EventHandler(fun sender args -> 
-            System.Diagnostics.Debug.WriteLine "SizeChanged"
+            Debug.WriteLine "SizeChanged"
             AbsoluteLayout.SetLayoutBounds(this.TitleLayout, Rectangle(0.5, 1.0, this.Width, 50.0))
             targetLayoutHeight <- this.Height - 50.0 * 3.0
             let displayedView = this.GetDisplayedView()
@@ -36,22 +37,64 @@ type OverviewPage(targetPlatform: Option<PlatformItemViewModel>,
 
         async {
             if targetGame.IsSome then
-                do! viewModel.Init(targetGame.Value)
+                do! viewModel.InitAsync(targetGame.Value)
             else if (targetPlatform.IsSome) then
-                do! viewModel.Init(targetPlatform.Value)
+                do! viewModel.InitAsync(targetPlatform.Value)
         }
         |> Async.RunSynchronously
 
+    member this.GetViewByTitleView (titleView: View) : Option<View> =
+        if titleView = (this.DescriptionATitle :> View) then
+            Some (this.DescriptionALayout :> View)
+        else if titleView = (this.DescriptionBTitle :> View) then
+            Some (this.DescriptionBLayout :> View)
+        else if titleView= (this.DescriptionCTitle :> View) then
+            Some (this.DescriptionCLayout :> View)
+        else
+            None
+
+    new (targetPlatform: PlatformItemViewModel) = OverviewPage(Some targetPlatform, Option.None)
+    new (targetGame: KeyValuePair<string, string>) = OverviewPage(Option.None, Some targetGame)
+
+    member this.ViewModel = base.BindingContext :?> OverviewViewModel
+
+    member this.DescriptionATitle: Button = base.Content.FindByName<Button> "descriptionATitle"
+    member this.DescriptionBTitle: Button = base.Content.FindByName<Button> "descriptionBTitle"
+    member this.DescriptionCTitle: Button = base.Content.FindByName<Button> "descriptionCTitle"
+    member this.DescriptionALayout: AbsoluteLayout = base.Content.FindByName<AbsoluteLayout> "descriptionALayout"
+    member this.DescriptionBLayout: ListView = base.Content.FindByName<ListView> "descriptionBLayout"
+    member this.DescriptionCLayout: AbsoluteLayout = base.Content.FindByName<AbsoluteLayout> "descriptionCLayout"
+    member this.RootLayout: AbsoluteLayout = base.Content.FindByName<AbsoluteLayout> "rootLayout"
+    member this.LoadingLayout: Frame = base.Content.FindByName<Frame> "loadingLayout"
+    member this.DescriptionLayout: StackLayout = base.Content.FindByName<StackLayout> "descriptionLayout"
+    member this.TitleLayout: AbsoluteLayout = base.Content.FindByName<AbsoluteLayout> "titleLayout"
+
+    member this.Handle_WikipediaItemTapped(sender: obj, e: SelectedItemChangedEventArgs) = 
+        Debug.WriteLine "Handle_WikipediaItemTapped"
+        if e.SelectedItem <> null then
+            let wikiPage = e.SelectedItem :?> WikipediaItemViewModel
+            (sender :?> ListView).SelectedItem <- null
+            Device.OpenUri wikiPage.Uri
+
+    member this.Handle_TitleTapped(sender: obj, e: EventArgs) = 
+        Debug.WriteLine "Handle_TitleTapped"
+        let senderView = sender :?> View
+        let targetView = this.GetViewByTitleView(senderView)
+        let displayedView = this.GetDisplayedView()
+        if targetView <> displayedView then
+            Debug.WriteLine "Let's animate description views"
+            this.AnimateDescriptionViews(targetView, displayedView)
+
     member private this.OnViewModelInitialized(sender: obj, args: EventArgs) =
-        System.Diagnostics.Debug.WriteLine("OnViewModelInitialized")
+        Debug.WriteLine("OnViewModelInitialized")
         Device.BeginInvokeOnMainThread(fun _ ->
             this.LoadingLayout.IsVisible <- false
             this.DescriptionLayout.IsVisible <- true
             this.AnimateDescriptionViews(Some (this.DescriptionALayout :> View), None)
             async {
                 //need to wait for a little time - setting the list source (wikipedia items) might break the animation
-                Task.Delay(5000) |> Async.AwaitTask |> ignore
-                do! viewModel.InitListItems()
+                Task.Delay(TimeSpan.FromMilliseconds((float animationDuration)*2.0)) |> Async.AwaitTask |> ignore
+                do! viewModel.InitWikipediaItemsAsync()
             }
             |> Async.RunSynchronously
         )
@@ -103,45 +146,3 @@ type OverviewPage(targetPlatform: Option<PlatformItemViewModel>,
             && this.DescriptionCLayout.Opacity > hiddenOpacity) then
             Some (this.DescriptionCLayout:> View)
         else None
-
-    member this.GetViewByTitleView (titleView: View) : Option<View> =
-        if titleView = (this.DescriptionATitle :> View) then
-            Some (this.DescriptionALayout :> View)
-        else if titleView = (this.DescriptionBTitle :> View) then
-            Some (this.DescriptionBLayout :> View)
-        else if titleView= (this.DescriptionCTitle :> View) then
-            Some (this.DescriptionCLayout :> View)
-        else
-            None
-
-    new (targetPlatform: PlatformItemViewModel) = OverviewPage(Some targetPlatform, Option.None)
-    new (targetGame: KeyValuePair<string, string>) = OverviewPage(Option.None, Some targetGame)
-
-    member this.ViewModel = base.BindingContext :?> OverviewViewModel
-
-    member this.DescriptionATitle: Button = base.Content.FindByName<Button> "descriptionATitle"
-    member this.DescriptionBTitle: Button = base.Content.FindByName<Button> "descriptionBTitle"
-    member this.DescriptionCTitle: Button = base.Content.FindByName<Button> "descriptionCTitle"
-    member this.DescriptionALayout: AbsoluteLayout = base.Content.FindByName<AbsoluteLayout> "descriptionALayout"
-    member this.DescriptionBLayout: ListView = base.Content.FindByName<ListView> "descriptionBLayout"
-    member this.DescriptionCLayout: AbsoluteLayout = base.Content.FindByName<AbsoluteLayout> "descriptionCLayout"
-    member this.RootLayout: AbsoluteLayout = base.Content.FindByName<AbsoluteLayout> "rootLayout"
-    member this.LoadingLayout: Frame = base.Content.FindByName<Frame> "loadingLayout"
-    member this.DescriptionLayout: StackLayout = base.Content.FindByName<StackLayout> "descriptionLayout"
-    member this.TitleLayout: AbsoluteLayout = base.Content.FindByName<AbsoluteLayout> "titleLayout"
-
-    member this.Handle_WikipediaItemTapped(sender: obj, e: SelectedItemChangedEventArgs) = 
-        System.Diagnostics.Debug.WriteLine "Handle_WikipediaItemTapped"
-        if e.SelectedItem <> null then
-            let wikiPage = e.SelectedItem :?> WikipediaItemViewModel
-            (sender :?> ListView).SelectedItem <- null
-            Device.OpenUri wikiPage.Uri
-
-    member this.Handle_TitleTapped(sender: obj, e: EventArgs) = 
-        System.Diagnostics.Debug.WriteLine "Handle_TitleTapped"
-        let senderView = sender :?> View
-        let targetView = this.GetViewByTitleView(senderView)
-        let displayedView = this.GetDisplayedView()
-        if targetView <> displayedView then
-            System.Diagnostics.Debug.WriteLine "Let's animate description views"
-            this.AnimateDescriptionViews(targetView, displayedView)

@@ -76,14 +76,17 @@
     <Folder Include="ViewModels\" />
     <Folder Include="ValueConverters\" />
     <Folder Include="Views\" />
+    <Folder Include="Adapters\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="RetroGameGauntletCore.fs" />
+    <Compile Include="GauntletCore.fs" />
     <Compile Include="Models\API\FlickSearchResponseModel.fs" />
     <Compile Include="Models\API\WikipediaSearchResponseModel.fs" />
     <Compile Include="Models\PlatformModel.fs" />
     <Compile Include="Models\Platforms.fs" />
+    <Compile Include="Adapters\IWebLauncherAdapter.fs" />
+    <Compile Include="Adapters\IAppInfoAdapter.fs" />
     <Compile Include="ViewModels\Items\PlatformItemViewModel.fs" />
     <Compile Include="ViewModels\Items\WikipediaItemViewModel.fs" />
     <Compile Include="Services\IPlatformLoaderService.fs" />
@@ -128,7 +131,7 @@
     <Compile Include="Views\RootPage.xaml.fs">
       <DependentUpon>RootPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RetroGameGauntletApp.fs" />
+    <Compile Include="GauntletApp.fs" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.Portable.FSharp.Targets" />

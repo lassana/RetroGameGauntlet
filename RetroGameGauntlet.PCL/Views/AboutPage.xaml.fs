@@ -9,13 +9,12 @@ open Xamarin.Forms.Xaml
 type AboutPage() as this = 
     inherit ContentPage()
     let _ = base.LoadFromXaml(typeof<AboutPage>)
-    let iOS = Device.OS = TargetPlatform.iOS // Device.RuntimePlatform causes crash
     let mutable isVisible: bool = false
     let mutable forkLabelPoint: Option<Point> = None
     let mutable forkLabelSide: float = 0.0
 
     do
-        if iOS then
+        if Device.RuntimePlatform = Device.iOS then
             base.Icon <- FileImageSource(File="ico_notepad.png")
             let hdlr = EventHandler(fun sender args -> 
                 let finalState = this.Width > 0.0
@@ -45,11 +44,11 @@ type AboutPage() as this =
     member this.ForkLabelOpacity 
         with get() = this.ForkLabel.Opacity
         and set parameter = 
-            if iOS then
+            if Device.RuntimePlatform = Device.iOS then
                 this.ForkLabel.Opacity <- parameter
 
     member this.AnimateForkLabel() =
-        if iOS then
+        if Device.RuntimePlatform = Device.iOS then
             if forkLabelPoint.IsSome then
                 async {
                     this.ForkLabelOpacity <- 0.0
@@ -69,13 +68,13 @@ type AboutPage() as this =
     override this.OnAppearing() = 
         base.OnAppearing()
         isVisible <- true
-        System.Diagnostics.Debug.WriteLine "OnAppearing"
+        Debug.WriteLine "OnAppearing"
         this.AnimateForkLabel()
         Device.BeginInvokeOnMainThread(fun () -> 
             async {
-                this.ViewModel.InitAsync |> Async.AwaitTask |> ignore
+                do! this.ViewModel.InitAsync()
             }
-            |> Async.Start)
+            |> Async.RunSynchronously)
 
     override this.OnDisappearing() =
         base.OnDisappearing()

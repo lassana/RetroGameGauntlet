@@ -3,8 +3,11 @@
 open System.Collections.Generic
 open System.Threading.Tasks
 
+/// The platforms loader services.
 type IPlatformLoaderService = 
 
-    abstract member GetRandomGame: string -> Task<string>
+    /// Gets the random game for a platform.
+    abstract member GetRandomGameAsync: string -> Task<string>
 
-    abstract member FindGamesFor: string -> Task<IEnumerable<KeyValuePair<string, string>>>
+    /// Gets the full list of games for a platform.
+    abstract member FindGamesForAsync: string -> Task<IEnumerable<KeyValuePair<string, string>>>

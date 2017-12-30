@@ -22,7 +22,7 @@ namespace RetroGameGauntlet.iOS.Services
 
         #region IPlatformLoader implementation
 
-        public async Task<string> GetRandomGame(string platform)
+        public async Task<string> GetRandomGameAsync(string platform)
         {
             string rvalue = null;
             await Task.Run(() =>
@@ -44,7 +44,7 @@ namespace RetroGameGauntlet.iOS.Services
         }
 
 
-        public async Task<IEnumerable<KeyValuePair<string, string>>> FindGamesFor(string query)
+        public async Task<IEnumerable<KeyValuePair<string, string>>> FindGamesForAsync(string query)
         {
             IEnumerable<KeyValuePair<string, string>> rvalue = null;
             await Task.Run(() =>

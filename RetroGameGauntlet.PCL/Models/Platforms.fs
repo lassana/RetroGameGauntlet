@@ -2,6 +2,7 @@
 
 open RetroGameGauntlet.PCL.Models
 
+/// The full list of game platforms.
 [<AbstractClass; Sealed>]
 type Platforms = 
     static member All = 

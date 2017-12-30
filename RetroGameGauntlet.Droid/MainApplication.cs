@@ -1,9 +1,15 @@
 using System;
-
 using Android.App;
 using Android.OS;
 using Android.Runtime;
 using Plugin.CurrentActivity;
+using RetroGameGauntlet.Droid.Adapters;
+using RetroGameGauntlet.Droid.Services;
+using RetroGameGauntlet.PCL;
+using RetroGameGauntlet.PCL.Adapters;
+using RetroGameGauntlet.PCL.Services;
+using RetroGameGauntlet.PCL.ViewModels;
+using SimpleInjector;
 
 namespace RetroGameGauntlet.Droid
 {
@@ -18,6 +24,13 @@ namespace RetroGameGauntlet.Droid
 
         public override void OnCreate()
         {
+            GauntletCore.Container.Register<IWebLauncherAdapter, WebLauncherAdapter>(Lifestyle.Transient);
+            GauntletCore.Container.Register<IAppInfoAdapter, AppInfoAdapter>(Lifestyle.Transient);
+            GauntletCore.Container.Register<IPlatformLoaderService, PlatformLoaderService>(Lifestyle.Singleton);
+            GauntletCore.Container.Register<IWikipediaSearchService, WikipediaSearchService>(Lifestyle.Singleton);
+            GauntletCore.Container.Register<IImageSearchService, FlickrImageSearchService>(Lifestyle.Singleton);
+            GauntletCore.Container.Register<AboutViewModel>(Lifestyle.Transient);
+
             base.OnCreate();
             RegisterActivityLifecycleCallbacks(this);
             //A great place to initialize Xamarin.Insights and Dependency Services!

@@ -1,7 +1,6 @@
 ﻿namespace RetroGameGauntlet.PCL.Models.API
 
 open Newtonsoft.Json
-open System
 open System.Collections.Generic
 
 type FlickPhotoModel = {
@@ -50,6 +49,7 @@ type FlickPhotoModel = {
     Photo: IEnumerable<FlickPhotoModel>
 }
 
+/// The Flickr API response.
 type FlickSearchResponseModel = {
     [<JsonProperty("stat")>]
     Stat: string

@@ -10,6 +10,7 @@ open System.Diagnostics
 open System.Windows.Input
 open Xamarin.Forms
 
+/// The "Overview" page view model.
 type OverviewViewModel(loaderService: IPlatformLoaderService,
                        imageSearchService: IImageSearchService,
                        wikiSearchService: IWikipediaSearchService) =
@@ -37,73 +38,87 @@ type OverviewViewModel(loaderService: IPlatformLoaderService,
 
     let eventInitialized = new Event<_>()
 
+    /// The page title.
     member this.Title
         with get() = title
         and set parameter =
             title <- parameter
             this.NotifyPropertyChanged <@ this.Title @>
 
+    /// A member shows if the current platform (e.g. Android) supports clipboarding.
     member this.IsClipboardEnabled: bool = CrossShare.Current.SupportsClipboard
 
+    /// The game logo image source.
     member this.LogoImageSource
         with get() = logoImageSource
         and set parameter =
             logoImageSource <- parameter
             this.NotifyPropertyChanged <@ this.LogoImageSource @>
 
+    /// The game description.
     member this.Description
         with get() = description
         and set parameter =
             description <- parameter
             this.NotifyPropertyChanged <@ this.Description @>
 
+    /// The "Search" button text.
     member this.SearchButtonText
         with get() = searchButtonText
         and set parameter =
             searchButtonText <- parameter
             this.NotifyPropertyChanged <@ this.Description @>
 
+    /// The "Share game" button command.
     member this.ShareClickCommand = shareClickCommand
 
+    /// The "Copy to clipboard" command.
     member this.CopyToClipboardClickCommand = copyToClipboardClickCommand
 
+    /// The "Search" button command.
     member this.SearchClickCommand = searchClickCommand
 
+    /// The "Wikipeadia" listview source.
     member this.WikipediaItems
         with get() = wikipediaItems
         and set parameter =
             wikipediaItems <- parameter
             this.NotifyPropertyChanged <@ this.Description @>
     
+    /// An event fires when the ViewModel is initialized.
     [<CLIEvent>]
     member public this.Initialized = eventInitialized.Publish
 
-    member public this.Init (targetPlatform: PlatformItemViewModel) : Async<unit> =
+    /// Inits the game info according to the selectd platform.
+    member public this.InitAsync (targetPlatform: PlatformItemViewModel) : Async<unit> =
         async {
             Debug.WriteLine("OverviewViewModel: Initializing...")
-            let! newGameName = loaderService.GetRandomGame(targetPlatform.PlatformModel.FileName) |> Async.AwaitTask
+            let! newGameName = loaderService.GetRandomGameAsync(targetPlatform.PlatformModel.FileName) |> Async.AwaitTask
             let gameName = newGameName
             let platformName = targetPlatform.Title
-            return! this.InitGame(gameName, platformName)
+            return! this.InitGameAsync(gameName, platformName)
         }
     
-    member public this.Init (targetGame: KeyValuePair<string, string>) : Async<unit> =
+    /// Inits the game info according to the selected game.
+    member public this.InitAsync (targetGame: KeyValuePair<string, string>) : Async<unit> =
         async {
             Debug.WriteLine("OverviewViewModel: Initializing...")
             let gameName = targetGame.Key
             let platformName = targetGame.Value
-            return! this.InitGame(gameName, platformName)
+            return! this.InitGameAsync(gameName, platformName)
         }
 
-    member public this.InitListItems () : Async<unit> =
+    /// Inits the Wikipedia listview source.
+    member public this.InitWikipediaItemsAsync () : Async<unit> =
         async {
-            let! items = (wikiSearchService.GetItemsForQuery selectedGameName) |> Async.AwaitTask
+            let! items = wikiSearchService.GetItemsForQueryAsync selectedGameName
             this.WikipediaItems <- items
         }
 
-    member public this.InitGame (gameName: string, platformName: string) : Async<unit> =
+    /// Inits the game info according to the selected platform and game.
+    member private this.InitGameAsync (gameName: string, platformName: string) : Async<unit> =
         async {
-            let! image = (imageSearchService.GetImageForGame gameName platformName) |> Async.AwaitTask
+            let! image = imageSearchService.GetImageForGameAsync gameName platformName
             Debug.WriteLine("The Flickr link is " + image)
             if String.IsNullOrEmpty image |> not then
                 this.LogoImageSource <- UriImageSource(Uri=Uri(image))
@@ -111,6 +126,6 @@ type OverviewViewModel(loaderService: IPlatformLoaderService,
             selectedPlatformName <- platformName
             this.Title <- gameName
             this.Description <- String.Format("Your {0} game", platformName)
-            this.SearchButtonText <- String.Format("Search \"{0} {1}\"", platformName, gameName)
+            this.SearchButtonText <- String.Format("Search for \"{0} {1}\"", platformName, gameName)
             eventInitialized.Trigger(this, EventArgs.Empty)
         }

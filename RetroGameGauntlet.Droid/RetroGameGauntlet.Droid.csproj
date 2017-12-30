@@ -111,8 +111,10 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MainApplication.cs" />
-    <Compile Include="Renders\MyLabelRenderer.cs" />
+    <Compile Include="Renderers\MyLabelRenderer.cs" />
     <Compile Include="Services\PlatformLoaderService.cs" />
+    <Compile Include="Adapters\AppInfoAdapter.cs" />
+    <Compile Include="Adapters\WebLauncherAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -124,8 +126,9 @@
     <Folder Include="Resources\layout\" />
     <Folder Include="Resources\values\" />
     <Folder Include="Resources\values-v21\" />
-    <Folder Include="Renders\" />
+    <Folder Include="Renderers\" />
     <Folder Include="Services\" />
+    <Folder Include="Adapters\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />
@@ -160,9 +163,9 @@
     <AndroidAsset Include="Assets\platforms\tg16" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RetroGameGauntlet.Forms\RetroGameGauntlet.Forms.csproj">
-      <Project>{DC6A13C5-8A5B-4083-AA1C-1787885262FC}</Project>
-      <Name>RetroGameGauntlet.Forms</Name>
+    <ProjectReference Include="..\RetroGameGauntlet.PCL\RetroGameGauntlet.PCL.fsproj">
+      <Project>{9D75A6EF-E17A-483D-91D8-E400409D4C1D}</Project>
+      <Name>RetroGameGauntlet.PCL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

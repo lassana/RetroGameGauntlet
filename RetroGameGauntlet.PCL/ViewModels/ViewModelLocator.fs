@@ -2,16 +2,17 @@
 
 open RetroGameGauntlet.PCL
 
+/// The view model localtor. It can be used as a factory of view models.
 [<AbstractClass; Sealed>]
 type ViewModelLocator =
 
     static member AboutViewModel: AboutViewModel = 
-        RetroGameGauntletCore.Container.GetInstance<AboutViewModel>()
+        GauntletCore.Container.GetInstance<AboutViewModel>()
 
     static member RandomsViewModel: RandomsViewModel = RandomsViewModel()
 
     static member SearchPlatformsViewModel: SearchPlatformsViewModel =
-        RetroGameGauntletCore.Container.GetInstance<SearchPlatformsViewModel>()
+        GauntletCore.Container.GetInstance<SearchPlatformsViewModel>()
 
     static member OverviewViewModel:OverviewViewModel =
-        RetroGameGauntletCore.Container.GetInstance<OverviewViewModel>()
+        GauntletCore.Container.GetInstance<OverviewViewModel>()
