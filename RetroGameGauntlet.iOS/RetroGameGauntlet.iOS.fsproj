@@ -117,7 +117,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Resources\platforms\" />
     <Folder Include="Renderers\" />
     <Folder Include="Adapters\" />
     <Folder Include="Services\" />
@@ -143,23 +142,6 @@
     <Compile Include="Services\PlatformLoaderService.fs" />
     <Compile Include="AppDelegate.fs" />
     <Compile Include="Main.fs" />
-    <BundleResource Include="Resources\platforms\amiga" />
-    <BundleResource Include="Resources\platforms\c64" />
-    <BundleResource Include="Resources\platforms\dos" />
-    <BundleResource Include="Resources\platforms\dreamcast" />
-    <BundleResource Include="Resources\platforms\gamegear" />
-    <BundleResource Include="Resources\platforms\gba" />
-    <BundleResource Include="Resources\platforms\gbc" />
-    <BundleResource Include="Resources\platforms\mame" />
-    <BundleResource Include="Resources\platforms\mastersystem" />
-    <BundleResource Include="Resources\platforms\megadrive" />
-    <BundleResource Include="Resources\platforms\n64" />
-    <BundleResource Include="Resources\platforms\neogeo" />
-    <BundleResource Include="Resources\platforms\nes" />
-    <BundleResource Include="Resources\platforms\ps1" />
-    <BundleResource Include="Resources\platforms\saturn" />
-    <BundleResource Include="Resources\platforms\snes" />
-    <BundleResource Include="Resources\platforms\tg16" />
     <BundleResource Include="Resources\ico_application.png" />
     <BundleResource Include="Resources\ico_notepad.png" />
     <BundleResource Include="Resources\ico_search.png" />
@@ -169,6 +151,57 @@
     <BundleResource Include="Resources\tile.png" />
     <BundleResource Include="Resources\PrStart.ttf" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <BundleResource Include="..\platforms\amiga">
+      <Link>Resources\platforms\amiga</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\c64">
+      <Link>Resources\platforms\c64</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\dos">
+      <Link>Resources\platforms\dos</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\dreamcast">
+      <Link>Resources\platforms\dreamcast</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\gamegear">
+      <Link>Resources\platforms\gamegear</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\gba">
+      <Link>Resources\platforms\gba</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\gbc">
+      <Link>Resources\platforms\gbc</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\mame">
+      <Link>Resources\platforms\mame</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\mastersystem">
+      <Link>Resources\platforms\mastersystem</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\megadrive">
+      <Link>Resources\platforms\megadrive</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\n64">
+      <Link>Resources\platforms\n64</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\neogeo">
+      <Link>Resources\platforms\neogeo</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\nes">
+      <Link>Resources\platforms\nes</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\ps1">
+      <Link>Resources\platforms\ps1</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\saturn">
+      <Link>Resources\platforms\saturn</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\snes">
+      <Link>Resources\platforms\snes</Link>
+    </BundleResource>
+    <BundleResource Include="..\platforms\tg16">
+      <Link>Resources\platforms\tg16</Link>
+    </BundleResource>
     <ProjectReference Include="..\RetroGameGauntlet.PCL\RetroGameGauntlet.PCL.fsproj">
       <Project>{9D75A6EF-E17A-483D-91D8-E400409D4C1D}</Project>
       <Name>RetroGameGauntlet.PCL</Name>

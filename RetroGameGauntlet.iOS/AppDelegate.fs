@@ -17,9 +17,9 @@ type AppDelegate () =
 
     // This method is invoked when the application is ready to run.
     override this.FinishedLaunching (app, options) =
-        GauntletCore.Container.Register<IWebLauncherAdapter, SafariLauncherAdapter>(Lifestyle.Transient);
-        GauntletCore.Container.Register<IAppInfoAdapter, AppInfoAdapter>(Lifestyle.Transient);
-        GauntletCore.Container.Register<IPlatformLoaderService, PlatformLoaderService>(Lifestyle.Singleton);
+        GauntletCore.Container.Register<IAppInfoAdapter, AppInfoAdapter>(Lifestyle.Transient)
+        GauntletCore.Container.Register<IWebLauncherAdapter, SafariLauncherAdapter>(Lifestyle.Transient)
+        GauntletCore.Container.Register<IPlatformLoaderService, PlatformLoaderService>(Lifestyle.Singleton)
         GauntletCore.Container.Register<IWikipediaSearchService, WikipediaSearchService>(Lifestyle.Singleton)
         GauntletCore.Container.Register<IImageSearchService, FlickrImageSearchService>(Lifestyle.Singleton)
 

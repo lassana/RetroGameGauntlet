@@ -5,6 +5,8 @@ Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "RetroGameGauntlet.PCL", "Re
 EndProject
 Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "RetroGameGauntlet.iOS", "RetroGameGauntlet.iOS\RetroGameGauntlet.iOS.fsproj", "{ACB0ECF2-DBE6-4F84-83B4-C75C00F5365E}"
 EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "RetroGameGauntlet.Droid", "RetroGameGauntlet.Droid\RetroGameGauntlet.Droid.fsproj", "{70E3AAA0-7173-4801-9AB0-BFB1E338458F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,18 @@ Global
 		{ACB0ECF2-DBE6-4F84-83B4-C75C00F5365E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{ACB0ECF2-DBE6-4F84-83B4-C75C00F5365E}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{ACB0ECF2-DBE6-4F84-83B4-C75C00F5365E}.Debug|iPhone.Build.0 = Debug|iPhone
+		{70E3AAA0-7173-4801-9AB0-BFB1E338458F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E3AAA0-7173-4801-9AB0-BFB1E338458F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E3AAA0-7173-4801-9AB0-BFB1E338458F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E3AAA0-7173-4801-9AB0-BFB1E338458F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E3AAA0-7173-4801-9AB0-BFB1E338458F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{70E3AAA0-7173-4801-9AB0-BFB1E338458F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{70E3AAA0-7173-4801-9AB0-BFB1E338458F}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{70E3AAA0-7173-4801-9AB0-BFB1E338458F}.Release|iPhone.Build.0 = Release|Any CPU
+		{70E3AAA0-7173-4801-9AB0-BFB1E338458F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{70E3AAA0-7173-4801-9AB0-BFB1E338458F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{70E3AAA0-7173-4801-9AB0-BFB1E338458F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{70E3AAA0-7173-4801-9AB0-BFB1E338458F}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

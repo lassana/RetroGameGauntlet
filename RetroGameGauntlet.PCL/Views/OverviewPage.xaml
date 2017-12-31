@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:design="clr-namespace:RetroGameGauntlet.PCL.ViewModels;assembly=RetroGameGauntlet.PCL"
+    xmlns:effects="clr-namespace:RetroGameGauntlet.PCL.Effects;assembly=RetroGameGauntlet.PCL"
     x:Class="RetroGameGauntlet.PCL.Views.OverviewPage"
     BindingContext="{x:Static design:ViewModelLocator.OverviewViewModel}"
     Title="{Binding Title}">
@@ -29,6 +30,9 @@
                     TextColor="White"
                     BorderRadius="0"
                     Clicked="Handle_TitleTapped">
+                    <Button.Effects>
+                        <effects:TransparentSelectableEffect />
+                    </Button.Effects>
                 </Button>
                 <AbsoluteLayout
                     x:Name="descriptionALayout"
@@ -67,7 +71,8 @@
                     x:Name="descriptionBTitle"
                     TextColor="White"
                     BorderRadius="0"
-                    Clicked="Handle_TitleTapped" />
+                    Clicked="Handle_TitleTapped">
+                </Button>
                 <ListView
                     x:Name="descriptionBLayout"
                     HeightRequest="0"
