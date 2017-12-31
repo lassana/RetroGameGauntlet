@@ -2,6 +2,7 @@
 
 open System.Collections.Generic
 open System.Diagnostics
+open RetroGameGauntlet.PCL.ViewModels.Items
 open Xamarin.Forms
 open Xamarin.Forms.Xaml
 
@@ -16,6 +17,6 @@ type SearchPlatformsPage() as this =
     member this.Handle_ItemTapped(sender : obj, e : SelectedItemChangedEventArgs) = 
         Debug.WriteLine "Handle_ItemTapped"
         if e.SelectedItem <> null then
-            let targetGame = e.SelectedItem :?> KeyValuePair<string, string>
+            let targetGame = e.SelectedItem :?> GameItemViewModel
             (sender :?> ListView).SelectedItem <- null
             this.Navigation.PushAsync(new OverviewPage(targetGame)) |> ignore

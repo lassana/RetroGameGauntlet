@@ -18,6 +18,11 @@ type GauntletApp() as this =
         this.Resources.Add("backgroundColor", backgroundColor)
         this.Resources.Add("textColor", textColor)
         this.Resources.Add("backgroundColorLighter", backgroundColorLighter)
+        match Device.RuntimePlatform with
+        | Device.iOS -> this.Resources.Add("monoFont", "Press Start")
+        | Device.Android -> this.Resources.Add("monoFont", "")
+        | _ -> Debug.WriteLine("Unsupported platform " + Device.RuntimePlatform)
+
         base.MainPage <- NavigationPage(
             RootPage(),
             BarBackgroundColor = backgroundColor,

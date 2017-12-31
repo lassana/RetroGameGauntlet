@@ -5,11 +5,12 @@ open System.Collections.Generic
 open System.Diagnostics
 open System.Threading.Tasks
 open RetroGameGauntlet.PCL.ViewModels
+open RetroGameGauntlet.PCL.ViewModels.Items
 open Xamarin.Forms
 open Xamarin.Forms.Xaml
 
 type OverviewPage(targetPlatform: Option<PlatformItemViewModel>,
-                  targetGame: Option<KeyValuePair<string, string>>)
+                  targetGame: Option<GameItemViewModel>)
                       as this =
     inherit ContentPage()
     let _ = base.LoadFromXaml(typeof<OverviewPage>)
@@ -41,7 +42,7 @@ type OverviewPage(targetPlatform: Option<PlatformItemViewModel>,
             else if (targetPlatform.IsSome) then
                 do! viewModel.InitAsync(targetPlatform.Value)
         }
-        |> Async.RunSynchronously
+        |> Async.StartImmediate
 
     member this.GetViewByTitleView (titleView: View) : Option<View> =
         if titleView = (this.DescriptionATitle :> View) then
@@ -54,7 +55,7 @@ type OverviewPage(targetPlatform: Option<PlatformItemViewModel>,
             None
 
     new (targetPlatform: PlatformItemViewModel) = OverviewPage(Some targetPlatform, Option.None)
-    new (targetGame: KeyValuePair<string, string>) = OverviewPage(Option.None, Some targetGame)
+    new (targetGame: GameItemViewModel) = OverviewPage(Option.None, Some targetGame)
 
     member this.ViewModel = base.BindingContext :?> OverviewViewModel
 
@@ -74,7 +75,7 @@ type OverviewPage(targetPlatform: Option<PlatformItemViewModel>,
         if e.SelectedItem <> null then
             let wikiPage = e.SelectedItem :?> WikipediaItemViewModel
             (sender :?> ListView).SelectedItem <- null
-            Device.OpenUri wikiPage.Uri
+            viewModel.Handle_WikipediaItemTapped(wikiPage)
 
     member this.Handle_TitleTapped(sender: obj, e: EventArgs) = 
         Debug.WriteLine "Handle_TitleTapped"
@@ -96,7 +97,7 @@ type OverviewPage(targetPlatform: Option<PlatformItemViewModel>,
                 Task.Delay(TimeSpan.FromMilliseconds((float animationDuration)*2.0)) |> Async.AwaitTask |> ignore
                 do! viewModel.InitWikipediaItemsAsync()
             }
-            |> Async.RunSynchronously
+            |> Async.StartImmediate
         )
 
     member this.AnimateDescriptionViews(viewToShow: Option<View>, viewToHide: Option<View>) =

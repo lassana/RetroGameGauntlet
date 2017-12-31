@@ -2,6 +2,7 @@
 
 open System.Collections.Generic
 open System.Threading.Tasks
+open RetroGameGauntlet.PCL.Models
 
 /// The platforms loader services.
 type IPlatformLoaderService = 
@@ -10,4 +11,4 @@ type IPlatformLoaderService =
     abstract member GetRandomGameAsync: string -> Async<string>
 
     /// Gets the full list of games for a platform.
-    abstract member FindGamesForAsync: string -> Async<IEnumerable<KeyValuePair<string, string>>>
+    abstract member FindGamesForAsync: string -> Async<IEnumerable<GameModel>>

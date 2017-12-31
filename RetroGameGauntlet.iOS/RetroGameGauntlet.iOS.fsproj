@@ -139,6 +139,8 @@
     <Compile Include="Adapters\AppInfoAdapter.fs" />
     <Compile Include="Adapters\SafariLauncherAdapter.fs" />
     <Compile Include="Renderers\ColoredTabbedPageRenderer.fs" />
+    <Compile Include="Renderers\ExtendedNavigationPageRenderer.fs" />
+    <Compile Include="Renderers\ExtendedPageRenderer.fs" />
     <Compile Include="Services\PlatformLoaderService.fs" />
     <Compile Include="AppDelegate.fs" />
     <Compile Include="Main.fs" />

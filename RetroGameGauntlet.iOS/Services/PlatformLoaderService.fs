@@ -32,7 +32,7 @@ type PlatformLoaderService () =
         /// Gets the full list of games for a platform.
         member this.FindGamesForAsync query =
             async {
-                let games = List<KeyValuePair<string, string>>()
+                let games = List<GameModel>()
                 platforms 
                     |> Seq.iter(
                         fun platform -> 
@@ -41,7 +41,7 @@ type PlatformLoaderService () =
                             let mutable nextLine: string = fileReader.ReadLine()
                             while nextLine <> null do
                                 if includes(nextLine, query) then
-                                    games.Add(KeyValuePair<string, string>(nextLine, platform.Value))
+                                    games.Add(GameModel(nextLine, platform.Value))
                                 nextLine <- fileReader.ReadLine()
                             fileReader.Close()
                     )

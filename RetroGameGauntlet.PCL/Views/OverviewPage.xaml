@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:design="clr-namespace:RetroGameGauntlet.PCL.ViewModels;assembly=RetroGameGauntlet.PCL"
     xmlns:effects="clr-namespace:RetroGameGauntlet.PCL.Effects;assembly=RetroGameGauntlet.PCL"
+    xmlns:views="clr-namespace:RetroGameGauntlet.PCL.Views;assembly=RetroGameGauntlet.PCL"
     x:Class="RetroGameGauntlet.PCL.Views.OverviewPage"
     BindingContext="{x:Static design:ViewModelLocator.OverviewViewModel}"
     Title="{Binding Title}">
@@ -24,7 +25,7 @@
                     HeightRequest="50"
                     BorderWidth="0"
                     BackgroundColor="Transparent"
-                    Font="Press Start"
+                    FontFamily="{StaticResource monoFont}"
                     FontSize="Micro"
                     Text="{Binding Description}"
                     TextColor="White"
@@ -52,7 +53,7 @@
                         <Label
                             Text="{Binding Title}"
                             TextColor="White"
-                            Font="Press Start"
+                            FontFamily="{StaticResource monoFont}"
                             FontSize="Micro"
                             AbsoluteLayout.LayoutBounds="0,0,1,1"
                             AbsoluteLayout.LayoutFlags="All"
@@ -65,7 +66,7 @@
                     HeightRequest="50"
                     BorderWidth="0"
                     BackgroundColor="Transparent"
-                    Font="Press Start"
+                    FontFamily="{StaticResource monoFont}"
                     FontSize="Micro"
                     Text="Wikipedia says"
                     x:Name="descriptionBTitle"
@@ -81,22 +82,7 @@
                     ItemSelected="Handle_WikipediaItemTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <ViewCell.View>
-                                    <StackLayout
-                                        Orientation="Vertical"
-                                        Padding="12">
-                                        <Label
-                                            Text="{Binding Title}">
-                                        </Label>
-                                        <Label
-                                            Text="{Binding Description}"
-                                            TextColor="Gray"
-                                            FontSize="Micro">
-                                        </Label>
-                                    </StackLayout>
-                                </ViewCell.View>
-                            </ViewCell>
+                            <views:CustomViewCell />
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -107,6 +93,7 @@
                     Font="Press Start"
                     FontSize="Micro"
                     Text="And more"
+                    FontFamily="{StaticResource monoFont}"
                     x:Name="descriptionCTitle"
                     TextColor="White"
                     BorderRadius="0"
@@ -125,6 +112,8 @@
                             BackgroundColor="Transparent"
                             Image="img_share.png"
                             Text="Share the game"
+                            FontFamily="{StaticResource monoFont}"
+                            FontSize="Micro"
                             Command="{Binding ShareClickCommand}"
                             HorizontalOptions="Start"
                             TextColor="White">
@@ -134,6 +123,8 @@
                             BackgroundColor="Transparent"
                             Image="img_clipboard.png"
                             Text="Copy name to clipboard"
+                            FontFamily="{StaticResource monoFont}"
+                            FontSize="Micro"
                             IsEnabled="{Binding IsClipboardEnabled}"
                             Command="{Binding CopyToClipboardClickCommand}"
                             HorizontalOptions="Start"
@@ -143,6 +134,8 @@
                             BorderWidth="0"
                             BackgroundColor="Transparent"
                             Text="{Binding SearchButtonText}"
+                            FontFamily="{StaticResource monoFont}"
+                            FontSize="Micro"
                             Image="img_search.png"
                             Command="{Binding SearchClickCommand}"
                             HorizontalOptions="Start"
@@ -171,6 +164,8 @@
                     </ActivityIndicator>
                     <Label
                         Text="Loading..."
+                        FontFamily="{StaticResource monoFont}"
+                        FontSize="Micro"
                         TextColor="White"
                         VerticalOptions="Center"
                         HorizontalOptions="Center">

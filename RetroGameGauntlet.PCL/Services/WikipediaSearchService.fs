@@ -19,6 +19,7 @@ type WikipediaSearchService() =
         /// Returns the list of Wikipedia queries.
         member this.GetWikipediaLinksAsync (query: string) =
             async {
+                System.Threading.Tasks.Task.Delay(5000) |> Async.AwaitTask |> ignore
                 let link = this.GetSearchUrl(query);
                 try
                     let! response = GauntletCore.HttpClient.GetAsync(link) |> Async.AwaitTask
@@ -38,6 +39,7 @@ type WikipediaSearchService() =
         /// Returns the list of Wikipedia pages for query.
         member this.GetItemsForQueryAsync (squery: string) =
             async {
+                System.Threading.Tasks.Task.Delay(5000) |> Async.AwaitTask |> ignore
                 let! wikiPage = (this :> IWikipediaSearchService).GetWikipediaLinksAsync(squery)
                 if wikiPage |> Seq.isEmpty then
                     return Seq.empty<WikipediaItemViewModel>

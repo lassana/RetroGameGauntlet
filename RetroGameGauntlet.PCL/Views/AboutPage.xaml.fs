@@ -70,11 +70,9 @@ type AboutPage() as this =
         isVisible <- true
         Debug.WriteLine "OnAppearing"
         this.AnimateForkLabel()
-        Device.BeginInvokeOnMainThread(fun () -> 
-            async {
-                do! this.ViewModel.InitAsync()
-            }
-            |> Async.RunSynchronously)
+        async {
+            do! this.ViewModel.InitAsync()
+        } |> Async.StartImmediate
 
     override this.OnDisappearing() =
         base.OnDisappearing()
@@ -86,4 +84,4 @@ type AboutPage() as this =
                 |> Async.AwaitTask 
                 |> ignore
         }
-        |> Async.RunSynchronously
+        |> Async.StartImmediate

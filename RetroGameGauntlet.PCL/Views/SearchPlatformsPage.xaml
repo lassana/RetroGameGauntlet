@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:design="clr-namespace:RetroGameGauntlet.PCL.ViewModels;assembly=RetroGameGauntlet.PCL"
+    xmlns:views="clr-namespace:RetroGameGauntlet.PCL.Views;assembly=RetroGameGauntlet.PCL"
     BindingContext="{x:Static design:ViewModelLocator.SearchPlatformsViewModel}"
     x:Class="RetroGameGauntlet.PCL.Views.SearchPlatformsPage"
     Title="Search">
@@ -13,7 +14,9 @@
             Spacing="0">
             <SearchBar
                 Placeholder="Start typing..."
-                Text="{Binding SearchText}">
+                Text="{Binding SearchText}"
+                FontFamily="{StaticResource monoFont}"
+                FontSize="Micro">
             </SearchBar>
             <Label
                 HorizontalOptions="CenterAndExpand"
@@ -21,6 +24,7 @@
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center"
                 Text="Nothing was found"
+                FontFamily="{StaticResource monoFont}"
                 FontSize="Micro"
                 TextColor="Gray"
                 IsVisible="{Binding HasItems, Converter={StaticResource not}}">
@@ -28,13 +32,11 @@
             <ListView
                 IsVisible="{Binding HasItems}"
                 ItemsSource="{Binding Games}"
-                ItemSelected="Handle_ItemTapped">
+                ItemSelected="Handle_ItemTapped"
+                HasUnevenRows="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell
-                            Text="{Binding Key}"
-                            Detail="{Binding Value}">
-                        </TextCell>
+                        <views:CustomViewCell />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
