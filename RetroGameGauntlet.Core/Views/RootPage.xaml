@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="RetroGameGauntlet.Core.Views.RootPage"
+    xmlns:views="clr-namespace:RetroGameGauntlet.Core.Views;assembly=RetroGameGauntlet.Core"
+    Title="Retro Game Gauntlet"
+    Padding="0">
+    <TabbedPage.Children>
+        <views:RandomsPage />
+        <views:SearchPlatformsPage />
+        <views:AboutPage />
+    </TabbedPage.Children>
+</TabbedPage>

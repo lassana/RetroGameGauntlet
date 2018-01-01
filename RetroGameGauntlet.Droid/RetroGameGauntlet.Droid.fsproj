@@ -49,29 +49,14 @@
     <Reference Include="System.Core" />
     <Reference Include="mscorlib" />
     <Reference Include="Mono.Android" />
-    <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.0.0.1\lib\portable-net45+monoandroid10+monotouch10+xamarinios10\FSharp.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.FSharp.ResourceProvider.Runtime">
       <HintPath>..\packages\Xamarin.Android.FSharp.ResourceProvider.1.0.0.14\lib\Xamarin.Android.FSharp.ResourceProvider.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.CurrentActivity">
       <HintPath>..\packages\Plugin.CurrentActivity.1.0.1\lib\MonoAndroid10\Plugin.CurrentActivity.dll</HintPath>
     </Reference>
-    <Reference Include="Plugin.Share.Abstractions">
-      <HintPath>..\packages\Plugin.Share.5.0.0\lib\MonoAndroid10\Plugin.Share.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Share">
-      <HintPath>..\packages\Plugin.Share.5.0.0\lib\MonoAndroid10\Plugin.Share.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="SimpleInjector">
-      <HintPath>..\packages\SimpleInjector.3.3.2\lib\netstandard1.0\SimpleInjector.dll</HintPath>
-    </Reference>
     <Reference Include="FormsViewGroup">
       <HintPath>..\packages\Xamarin.Forms.2.5.0.122203\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
     </Reference>
@@ -138,6 +123,23 @@
     <Reference Include="Xamarin.Android.Support.v7.MediaRouter">
       <HintPath>..\packages\Xamarin.Android.Support.v7.MediaRouter.25.4.0.2\lib\MonoAndroid70\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Share.Abstractions">
+      <HintPath>..\packages\Plugin.Share.7.1.1\lib\MonoAndroid10\Plugin.Share.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Share">
+      <HintPath>..\packages\Plugin.Share.7.1.1\lib\MonoAndroid10\Plugin.Share.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector">
+      <HintPath>..\packages\SimpleInjector.4.0.12\lib\netstandard1.3\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="FSharp.Core">
+      <HintPath>..\packages\FSharp.Core.4.2.3\lib\netstandard1.6\FSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
@@ -225,17 +227,17 @@
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values-v21\styles.xml" />
     <Compile Include="GauntletDroidApp.fs" />
-    <Compile Include="Adapters\AppInfoAdapter.fs" />
     <Compile Include="Adapters\WebLauncherAdapter.fs" />
     <Compile Include="Effects\TransparentSelectableDroidEffect.fs" />
+    <Compile Include="Effects\AppInfoAdapter.fs" />
     <Compile Include="Renderers\ExtendedNavigationPageRenderer.fs" />
     <Compile Include="Renderers\ExtendedTabbedPageRenderer.fs" />
     <Compile Include="Services\PlatformLoaderService.fs" />
     <Compile Include="MainApplication.fs" />
     <Compile Include="MainActivity.fs" />
-    <ProjectReference Include="..\RetroGameGauntlet.PCL\RetroGameGauntlet.PCL.fsproj">
-      <Project>{9D75A6EF-E17A-483D-91D8-E400409D4C1D}</Project>
-      <Name>RetroGameGauntlet.PCL</Name>
+    <ProjectReference Include="..\RetroGameGauntlet.Core\RetroGameGauntlet.Core.fsproj">
+      <Project>{2FBB2A85-5221-4732-B5A5-5F6CC902BA75}</Project>
+      <Name>RetroGameGauntlet.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.FSharp.targets" />

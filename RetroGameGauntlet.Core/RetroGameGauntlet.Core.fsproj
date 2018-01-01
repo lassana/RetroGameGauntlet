@@ -1,0 +1,61 @@
+﻿<Project Sdk="FSharp.NET.Sdk;Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="GauntletCore.fs" />
+    <Compile Include="Library.fs" />
+    <Compile Include="Models\API\FlickSearchResponseModel.fs" />
+    <Compile Include="Models\API\WikipediaSearchResponseModel.fs" />
+    <Compile Include="Models\GameModel.fs" />
+    <Compile Include="Models\PlatformModel.fs" />
+    <Compile Include="Models\Platforms.fs" />
+    <Compile Include="Models\WikipediaPageModel.fs" />
+    <Compile Include="Adapters\IAppInfoAdapter.fs" />
+    <Compile Include="Adapters\IWebLauncherAdapter.fs" />
+    <Compile Include="Services\IImageSearchService.fs" />
+    <Compile Include="Services\IPlatformLoaderService.fs" />
+    <Compile Include="Services\IWikipediaSearchService.fs" />
+    <Compile Include="Services\FlickrImageSearchService.fs" />
+    <Compile Include="Services\WikipediaSearchService.fs" />
+    <Compile Include="ViewModels\Items\GameItemViewModel.fs" />
+    <Compile Include="ViewModels\Items\PlatformItemViewModel.fs" />
+    <Compile Include="ViewModels\Items\WikipediaItemViewModel.fs" />
+    <Compile Include="ViewModels\ViewModelBase.fs" />
+    <Compile Include="ViewModels\OverviewViewModel.fs" />
+    <Compile Include="ViewModels\AboutViewModel.fs" />
+    <Compile Include="ViewModels\RandomsViewModel.fs" />
+    <Compile Include="ViewModels\SearchPlatformsViewModel.fs" />
+    <Compile Include="ViewModels\ViewModelLocator.fs" />
+    <Compile Include="ValueConverters\BooleanNegationConverter.fs" />
+    <Compile Include="Effects\TransparentSelectableEffect.fs" />
+    <Compile Include="Views\CustomViewCell.xaml.fs">
+      <DependentUpon>CustomViewCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OverviewPage.xaml.fs">
+      <DependentUpon>OverviewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RandomsPage.xaml.fs">
+      <DependentUpon>RandomsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchPlatformsPage.xaml.fs">
+      <DependentUpon>SearchPlatformsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AboutPage.xaml.fs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RootPage.xaml.fs">
+      <DependentUpon>RootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GauntletApp.fs" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.121934" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="SimpleInjector" Version="4.0.12" />
+    <PackageReference Include="Plugin.Share" Version="7.1.1" />
+    <PackageReference Include="FSharp.Core" Version="4.2.3" />
+    <PackageReference Include="FSharp.NET.Sdk" Version="1.0.5" />
+  </ItemGroup>
+
+</Project>

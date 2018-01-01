@@ -5,7 +5,7 @@ open Android.App
 open Android.Content.PM
 open Android.OS
 open RetroGameGauntlet.Droid
-open RetroGameGauntlet.PCL
+open RetroGameGauntlet.Core
 open Xamarin.Forms
 open Xamarin.Forms.Platform.Android
 

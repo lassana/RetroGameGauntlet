@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:design="clr-namespace:RetroGameGauntlet.Core.ViewModels;assembly=RetroGameGauntlet.Core"
+    xmlns:effects="clr-namespace:RetroGameGauntlet.Core.Effects;assembly=RetroGameGauntlet.Core"
+    xmlns:views="clr-namespace:RetroGameGauntlet.Core.Views;assembly=RetroGameGauntlet.Core"
+    x:Class="RetroGameGauntlet.Core.Views.OverviewPage"
+    BindingContext="{x:Static design:ViewModelLocator.OverviewViewModel}"
+    Title="{Binding Title}">
+    <ContentPage.Content>
+        <AbsoluteLayout
+            x:Name="rootLayout">
+            <StackLayout
+                x:Name="descriptionLayout"
+                IsVisible="false"
+                Orientation="Vertical"
+                BackgroundColor="{StaticResource backgroundColor}"
+                Padding="0"
+                Spacing="0"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All">
+                <Button
+                    x:Name="descriptionATitle"
+                    HeightRequest="50"
+                    FontFamily="{StaticResource monoFont}"
+                    FontSize="Micro"
+                    Text="{Binding Description}"
+                    TextColor="White"
+                    Clicked="Handle_TitleTapped">
+                    <Button.Effects>
+                        <effects:TransparentSelectableEffect />
+                    </Button.Effects>
+                </Button>
+                <AbsoluteLayout
+                    x:Name="descriptionALayout"
+                    HeightRequest="0">
+                    <Image
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        Aspect="AspectFill"
+                        Source="{Binding LogoImageSource}">
+                    </Image>
+                    <AbsoluteLayout
+                        x:Name="titleLayout"
+                        BackgroundColor="#A0000000"
+                        Padding="6"
+                        AbsoluteLayout.LayoutBounds="0.5,1,70,50"
+                        AbsoluteLayout.LayoutFlags="PositionProportional">
+                        <Label
+                            Text="{Binding Title}"
+                            TextColor="White"
+                            FontFamily="{StaticResource monoFont}"
+                            FontSize="Micro"
+                            AbsoluteLayout.LayoutBounds="0,0,1,1"
+                            AbsoluteLayout.LayoutFlags="All"
+                            VerticalOptions="CenterAndExpand"
+                            VerticalTextAlignment="Center">
+                        </Label>
+                    </AbsoluteLayout>
+                </AbsoluteLayout>
+                <Button
+                    HeightRequest="50"
+                    FontFamily="{StaticResource monoFont}"
+                    FontSize="Micro"
+                    Text="Wikipedia says"
+                    x:Name="descriptionBTitle"
+                    TextColor="White"
+                    Clicked="Handle_TitleTapped">
+                    <Button.Effects>
+                        <effects:TransparentSelectableEffect />
+                    </Button.Effects>
+                </Button>
+                <ListView
+                    x:Name="descriptionBLayout"
+                    HeightRequest="0"
+                    HasUnevenRows="true"
+                    ItemsSource="{Binding WikipediaItems}"
+                    ItemSelected="Handle_WikipediaItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <views:CustomViewCell />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button
+                    HeightRequest="50"
+                    Font="Press Start"
+                    FontSize="Micro"
+                    Text="And more"
+                    FontFamily="{StaticResource monoFont}"
+                    x:Name="descriptionCTitle"
+                    TextColor="White"
+                    Clicked="Handle_TitleTapped">
+                    <Button.Effects>
+                        <effects:TransparentSelectableEffect />
+                    </Button.Effects>
+                </Button>
+                <AbsoluteLayout
+                    x:Name="descriptionCLayout"
+                    BackgroundColor="{StaticResource backgroundColorLighter}"
+                    HeightRequest="0"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All">
+                    <StackLayout
+                        Padding="6">
+                        <Button
+                            Image="img_share.png"
+                            Text="Share the game"
+                            FontFamily="{StaticResource monoFont}"
+                            FontSize="Micro"
+                            Command="{Binding ShareClickCommand}"
+                            HorizontalOptions="Start"
+                            TextColor="White">
+                            <Button.Effects>
+                                <effects:TransparentSelectableEffect />
+                            </Button.Effects>
+                        </Button>
+                        <Button
+                            Image="img_clipboard.png"
+                            Text="Copy name to clipboard"
+                            FontFamily="{StaticResource monoFont}"
+                            FontSize="Micro"
+                            IsEnabled="{Binding IsClipboardEnabled}"
+                            Command="{Binding CopyToClipboardClickCommand}"
+                            HorizontalOptions="Start"
+                            TextColor="White">
+                            <Button.Effects>
+                                <effects:TransparentSelectableEffect />
+                            </Button.Effects>
+                        </Button>
+                        <Button
+                            Text="{Binding SearchButtonText}"
+                            FontFamily="{StaticResource monoFont}"
+                            FontSize="Micro"
+                            Image="img_search.png"
+                            Command="{Binding SearchClickCommand}"
+                            HorizontalOptions="Start"
+                            TextColor="White">
+                            <Button.Effects>
+                                <effects:TransparentSelectableEffect />
+                            </Button.Effects>
+                        </Button>
+                    </StackLayout>
+                </AbsoluteLayout>
+            </StackLayout>
+            <Frame
+                x:Name="loadingLayout"
+                BackgroundColor="Gray"
+                IsVisible="true"
+                OutlineColor="Transparent"
+                AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <StackLayout
+                    Orientation="Horizontal"
+                    Padding="0">
+                    <ActivityIndicator
+                        Color="White"
+                        IsRunning="true"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        WidthRequest="20"
+                        HeightRequest="20">
+                    </ActivityIndicator>
+                    <Label
+                        Text="Loading..."
+                        FontFamily="{StaticResource monoFont}"
+                        FontSize="Micro"
+                        TextColor="White"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center">
+                    </Label>
+                </StackLayout>
+            </Frame>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

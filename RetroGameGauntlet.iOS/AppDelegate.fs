@@ -4,9 +4,9 @@ open System
 open Foundation
 open RetroGameGauntlet.iOS.Adapters
 open RetroGameGauntlet.iOS.Services
-open RetroGameGauntlet.PCL
-open RetroGameGauntlet.PCL.Adapters
-open RetroGameGauntlet.PCL.Services
+open RetroGameGauntlet.Core
+open RetroGameGauntlet.Core.Adapters
+open RetroGameGauntlet.Core.Services
 open SimpleInjector
 open UIKit
 open Xamarin.Forms

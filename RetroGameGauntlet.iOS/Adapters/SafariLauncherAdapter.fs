@@ -1,7 +1,7 @@
 ﻿namespace RetroGameGauntlet.iOS.Adapters
 
 open Foundation
-open RetroGameGauntlet.PCL.Adapters
+open RetroGameGauntlet.Core.Adapters
 open SafariServices
 open UIKit
 open Xamarin.Forms

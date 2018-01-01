@@ -6,8 +6,8 @@ open System.Globalization
 open System.IO
 open System.Linq
 open Plugin.CurrentActivity
-open RetroGameGauntlet.PCL.Models
-open RetroGameGauntlet.PCL.Services
+open RetroGameGauntlet.Core.Models
+open RetroGameGauntlet.Core.Services
 
 type PlatformLoaderService () =
     let platforms = Platforms.All |> Seq.map(fun (arg) -> KeyValuePair<string, string>(arg.FileName, arg.Title))

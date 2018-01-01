@@ -7,10 +7,10 @@ open Android.Runtime
 open Plugin.CurrentActivity
 open RetroGameGauntlet.Droid.Adapters
 open RetroGameGauntlet.Droid.Services
-open RetroGameGauntlet.PCL
-open RetroGameGauntlet.PCL.Adapters
-open RetroGameGauntlet.PCL.Services
-open RetroGameGauntlet.PCL.ViewModels
+open RetroGameGauntlet.Core
+open RetroGameGauntlet.Core.Adapters
+open RetroGameGauntlet.Core.Services
+open RetroGameGauntlet.Core.ViewModels
 open SimpleInjector
 
 [<Application>]
