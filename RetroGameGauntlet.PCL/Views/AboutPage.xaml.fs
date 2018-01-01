@@ -9,6 +9,7 @@ open Xamarin.Forms.Xaml
 type AboutPage() as this = 
     inherit ContentPage()
     let _ = base.LoadFromXaml(typeof<AboutPage>)
+    let showForkButton = true
     let mutable isVisible: bool = false
     let mutable forkLabelPoint: Option<Point> = None
     let mutable forkLabelSide: float = 0.0
@@ -16,6 +17,7 @@ type AboutPage() as this =
     do
         if Device.RuntimePlatform = Device.iOS then
             base.Icon <- FileImageSource(File="ico_notepad.png")
+        if showForkButton then
             let hdlr = EventHandler(fun sender args -> 
                 let finalState = this.Width > 0.0
                                  && this.Height > 0.0
@@ -44,11 +46,11 @@ type AboutPage() as this =
     member this.ForkLabelOpacity 
         with get() = this.ForkLabel.Opacity
         and set parameter = 
-            if Device.RuntimePlatform = Device.iOS then
+            if showForkButton then
                 this.ForkLabel.Opacity <- parameter
 
     member this.AnimateForkLabel() =
-        if Device.RuntimePlatform = Device.iOS then
+        if showForkButton then
             if forkLabelPoint.IsSome then
                 async {
                     this.ForkLabelOpacity <- 0.0
