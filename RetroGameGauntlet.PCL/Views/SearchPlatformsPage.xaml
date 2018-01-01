@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:design="clr-namespace:RetroGameGauntlet.PCL.ViewModels;assembly=RetroGameGauntlet.PCL"
+    xmlns:views="clr-namespace:RetroGameGauntlet.PCL.Views;assembly=RetroGameGauntlet.PCL"
+    BindingContext="{x:Static design:ViewModelLocator.SearchPlatformsViewModel}"
+    x:Class="RetroGameGauntlet.PCL.Views.SearchPlatformsPage"
+    Title="Search">
+    <ContentPage.Content>
+        <StackLayout
+            Orientation="Vertical"
+            Padding="0"
+            Spacing="0">
+            <SearchBar
+                Placeholder="Start typing..."
+                Text="{Binding SearchText}"
+                FontFamily="{StaticResource monoFont}"
+                FontSize="Micro">
+            </SearchBar>
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                Text="Nothing was found"
+                FontFamily="{StaticResource monoFont}"
+                FontSize="Micro"
+                TextColor="Gray"
+                IsVisible="{Binding HasItems, Converter={StaticResource not}}">
+            </Label>
+            <ListView
+                IsVisible="{Binding HasItems}"
+                ItemsSource="{Binding Games}"
+                ItemSelected="Handle_ItemTapped"
+                HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <views:CustomViewCell />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

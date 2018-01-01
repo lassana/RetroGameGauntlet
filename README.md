@@ -1,5 +1,6 @@
 # Retro Game Gauntlet
 
-A sample app that is built with Xamarin.Forms.
+A sample mobile application: F#, Xamarin.Forms, IoC.
 
-![Screencast](media/iphone.gif)
+
+<pre><code><img src="media/iphone.gif" height="606px" width="352px"> <img src="media/android_1.png" height="606px" width="341px"> <img src="media/ios_1.png" height="606px" width="341px"></code></pre>
