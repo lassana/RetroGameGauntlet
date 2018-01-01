@@ -146,8 +146,15 @@
     <Folder Include="Adapters\" />
     <Folder Include="Services\" />
     <Folder Include="Effects\" />
+    <Folder Include="Renderers\" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ico_search.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ico_notepad.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ico_application.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\img_clipboard.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\img_search.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\img_share.png" />
     <None Include="Properties\AndroidManifest.xml" />
     <Compile Include="Properties\AssemblyInfo.fs" />
     <None Include="packages.config" />
@@ -202,6 +209,9 @@
     <AndroidAsset Include="..\platforms\amiga">
       <Link>Assets\platforms\amiga</Link>
     </AndroidAsset>
+    <AndroidAsset Include="..\PrStart.ttf">
+      <Link>Assets\Fonts\PrStart.ttf</Link>
+    </AndroidAsset>
     <None Include="Resources\Resource.designer.cs" />
     <AndroidResource Include="Resources\mipmap-hdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\Icon.png" />
@@ -218,6 +228,7 @@
     <Compile Include="Adapters\AppInfoAdapter.fs" />
     <Compile Include="Adapters\WebLauncherAdapter.fs" />
     <Compile Include="Effects\TransparentSelectableDroidEffect.fs" />
+    <Compile Include="Renderers\ExtendedNavigationPageRenderer.fs" />
     <Compile Include="Services\PlatformLoaderService.fs" />
     <Compile Include="MainApplication.fs" />
     <Compile Include="MainActivity.fs" />

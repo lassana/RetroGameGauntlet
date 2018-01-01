@@ -20,7 +20,7 @@ type GauntletApp() as this =
         this.Resources.Add("backgroundColorLighter", backgroundColorLighter)
         match Device.RuntimePlatform with
         | Device.iOS -> this.Resources.Add("monoFont", "Press Start")
-        | Device.Android -> this.Resources.Add("monoFont", "")
+        | Device.Android -> this.Resources.Add("monoFont", "Fonts/PrStart.ttf#Press Start")
         | _ -> Debug.WriteLine("Unsupported platform " + Device.RuntimePlatform)
 
         base.MainPage <- NavigationPage(

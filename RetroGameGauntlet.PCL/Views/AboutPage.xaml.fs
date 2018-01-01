@@ -57,6 +57,7 @@ type AboutPage() as this =
                         |> Async.AwaitTask
                         |> Async.Ignore
                     this.ForkLabelOpacity <- 1.0
+                    this.ForkLabel.IsVisible <- true
                     do!
                         this.ForkLabel.TranslateTo(forkLabelPoint.Value.X, forkLabelPoint.Value.Y, 450u, Easing.CubicInOut) 
                         |> Async.AwaitTask

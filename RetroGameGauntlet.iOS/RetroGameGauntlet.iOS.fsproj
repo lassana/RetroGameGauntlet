@@ -151,7 +151,6 @@
     <BundleResource Include="Resources\img_search%402x.png" />
     <BundleResource Include="Resources\img_share%402x.png" />
     <BundleResource Include="Resources\tile.png" />
-    <BundleResource Include="Resources\PrStart.ttf" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <BundleResource Include="..\platforms\amiga">
       <Link>Resources\platforms\amiga</Link>
@@ -203,6 +202,9 @@
     </BundleResource>
     <BundleResource Include="..\platforms\tg16">
       <Link>Resources\platforms\tg16</Link>
+    </BundleResource>
+    <BundleResource Include="..\PrStart.ttf">
+      <Link>Resources\PrStart.ttf</Link>
     </BundleResource>
     <ProjectReference Include="..\RetroGameGauntlet.PCL\RetroGameGauntlet.PCL.fsproj">
       <Project>{9D75A6EF-E17A-483D-91D8-E400409D4C1D}</Project>

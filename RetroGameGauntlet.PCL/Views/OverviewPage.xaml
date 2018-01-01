@@ -23,13 +23,10 @@
                 <Button
                     x:Name="descriptionATitle"
                     HeightRequest="50"
-                    BorderWidth="0"
-                    BackgroundColor="Transparent"
                     FontFamily="{StaticResource monoFont}"
                     FontSize="Micro"
                     Text="{Binding Description}"
                     TextColor="White"
-                    BorderRadius="0"
                     Clicked="Handle_TitleTapped">
                     <Button.Effects>
                         <effects:TransparentSelectableEffect />
@@ -64,15 +61,15 @@
                 </AbsoluteLayout>
                 <Button
                     HeightRequest="50"
-                    BorderWidth="0"
-                    BackgroundColor="Transparent"
                     FontFamily="{StaticResource monoFont}"
                     FontSize="Micro"
                     Text="Wikipedia says"
                     x:Name="descriptionBTitle"
                     TextColor="White"
-                    BorderRadius="0"
                     Clicked="Handle_TitleTapped">
+                    <Button.Effects>
+                        <effects:TransparentSelectableEffect />
+                    </Button.Effects>
                 </Button>
                 <ListView
                     x:Name="descriptionBLayout"
@@ -88,16 +85,16 @@
                 </ListView>
                 <Button
                     HeightRequest="50"
-                    BorderWidth="0"
-                    BackgroundColor="Transparent"
                     Font="Press Start"
                     FontSize="Micro"
                     Text="And more"
                     FontFamily="{StaticResource monoFont}"
                     x:Name="descriptionCTitle"
                     TextColor="White"
-                    BorderRadius="0"
                     Clicked="Handle_TitleTapped">
+                    <Button.Effects>
+                        <effects:TransparentSelectableEffect />
+                    </Button.Effects>
                 </Button>
                 <AbsoluteLayout
                     x:Name="descriptionCLayout"
@@ -108,8 +105,6 @@
                     <StackLayout
                         Padding="6">
                         <Button
-                            BorderWidth="0"
-                            BackgroundColor="Transparent"
                             Image="img_share.png"
                             Text="Share the game"
                             FontFamily="{StaticResource monoFont}"
@@ -117,10 +112,11 @@
                             Command="{Binding ShareClickCommand}"
                             HorizontalOptions="Start"
                             TextColor="White">
+                            <Button.Effects>
+                                <effects:TransparentSelectableEffect />
+                            </Button.Effects>
                         </Button>
                         <Button
-                            BorderWidth="0"
-                            BackgroundColor="Transparent"
                             Image="img_clipboard.png"
                             Text="Copy name to clipboard"
                             FontFamily="{StaticResource monoFont}"
@@ -129,10 +125,11 @@
                             Command="{Binding CopyToClipboardClickCommand}"
                             HorizontalOptions="Start"
                             TextColor="White">
+                            <Button.Effects>
+                                <effects:TransparentSelectableEffect />
+                            </Button.Effects>
                         </Button>
                         <Button
-                            BorderWidth="0"
-                            BackgroundColor="Transparent"
                             Text="{Binding SearchButtonText}"
                             FontFamily="{StaticResource monoFont}"
                             FontSize="Micro"
@@ -140,6 +137,9 @@
                             Command="{Binding SearchClickCommand}"
                             HorizontalOptions="Start"
                             TextColor="White">
+                            <Button.Effects>
+                                <effects:TransparentSelectableEffect />
+                            </Button.Effects>
                         </Button>
                     </StackLayout>
                 </AbsoluteLayout>

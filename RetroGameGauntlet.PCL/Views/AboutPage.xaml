@@ -15,6 +15,7 @@
                 TextColor="White"
                 FontAttributes="Bold"
                 Text="    Fork me on Github    "
+                IsVisible="false"
                 FontSize="Micro">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
@@ -34,13 +35,13 @@
                 </Image>
                 <Label
                     Text="Retro Game Gauntlet"
-                    Font="Press Start"
+                    FontFamily="{StaticResource monoFont}"
                     FontSize="Micro"
                     HorizontalTextAlignment="Center">
                 </Label>
                 <Label
                     FontSize="Micro"
-                    Font="Press Start"
+                    FontFamily="{StaticResource monoFont}"
                     HorizontalTextAlignment="Center"
                     Text="{Binding VersionName}">
                 </Label>
