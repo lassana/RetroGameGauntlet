@@ -52,9 +52,6 @@
     <Reference Include="FSharp.Core">
       <HintPath>..\packages\FSharp.Core.4.0.0.1\lib\portable-net45+monoandroid10+monotouch10+xamarinios10\FSharp.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Android.FSharp.ResourceProvider.Runtime">
-      <HintPath>..\packages\Xamarin.Android.FSharp.ResourceProvider.1.0.0.14\lib\Xamarin.Android.FSharp.ResourceProvider.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Plugin.CurrentActivity">
       <HintPath>..\packages\Plugin.CurrentActivity.1.0.1\lib\MonoAndroid10\Plugin.CurrentActivity.dll</HintPath>
     </Reference>
@@ -138,6 +135,10 @@
     <Reference Include="Xamarin.Android.Support.v7.MediaRouter">
       <HintPath>..\packages\Xamarin.Android.Support.v7.MediaRouter.25.4.0.2\lib\MonoAndroid70\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.FSharp.ResourceProvider.Runtime">
+      <HintPath>..\packages\Xamarin.Android.FSharp.ResourceProvider.1.0.0.14\lib\Xamarin.Android.FSharp.ResourceProvider.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
@@ -212,7 +213,6 @@
     <AndroidAsset Include="..\PrStart.ttf">
       <Link>Assets\Fonts\PrStart.ttf</Link>
     </AndroidAsset>
-    <None Include="Resources\Resource.designer.cs" />
     <AndroidResource Include="Resources\mipmap-hdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
@@ -224,6 +224,7 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values-v21\styles.xml" />
+    <None Include="Resources\Resource.designer.cs" />
     <Compile Include="GauntletDroidApp.fs" />
     <Compile Include="Adapters\AppInfoAdapter.fs" />
     <Compile Include="Adapters\WebLauncherAdapter.fs" />
